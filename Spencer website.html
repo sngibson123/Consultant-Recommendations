@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Specialist Recommendations in the Inpatient Setting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3f6fb;
+    --paper-2:#e7eef8;
+    --card:#ffffff;
+    --ink:#15202e;
+    --ink-soft:#3a4757;
+    --ink-faint:#6e7b8c;
+    --line:#d4deea;
+    --brand:#1e4f8f;
+    --brand-deep:#10325f;
+    --accent:#ffcb2e;
+    --rct:#1f7a54;
+    --rct-bg:#e4f0e8;
+    --guide:#2f5e93;
+    --guide-bg:#e3ebf4;
+    --expert:#9a6b18;
+    --expert-bg:#f6edd2;
+    --practice:#b23a26;
+    --practice-bg:#f6e2dc;
+    --mark:#ffe27a;
+    --shadow:0 1px 2px rgba(16,32,60,.06),0 8px 24px -12px rgba(16,32,60,.20);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Hanken Grotesk",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    font-variant-ligatures:none;
+    font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;
+    background-image:
+      radial-gradient(circle at 12% -10%,rgba(30,79,143,.08),transparent 42%),
+      radial-gradient(circle at 100% 0%,rgba(255,203,46,.10),transparent 38%);
+    background-attachment:fixed;
+  }
+  /* ---------- Header ---------- */
+  header.masthead{
+    background:var(--brand-deep);
+    color:#eef3fa;
+    padding:34px 26px 30px;
+    border-bottom:3px solid var(--accent);
+    position:relative;
+    overflow:hidden;
+  }
+  header.masthead::after{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:18px 18px;opacity:.5;pointer-events:none;
+  }
+  .masthead .wrap{max-width:1120px;margin:0 auto;position:relative}
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+    color:#a7c4ea;font-weight:600;margin-bottom:10px;
+  }
+  h1{
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size:clamp(1.9rem,4.4vw,3.1rem);
+    line-height:1.02;
+    letter-spacing:-.01em;
+    max-width:18ch;
+  }
+  h1 em{font-style:italic;color:var(--accent)}
+  .masthead p.lede{
+    margin-top:14px;max-width:64ch;color:#ccd9ec;font-size:1.02rem;
+  }
+  /* ---------- Disclaimer ---------- */
+  .disclaimer{
+    background:var(--practice-bg);
+    border-left:4px solid var(--practice);
+    color:#6b261a;
+    max-width:1120px;margin:18px auto 0;
+    padding:13px 18px;border-radius:6px;
+    font-size:.87rem;line-height:1.5;
+  }
+  .disclaimer strong{font-weight:700}
+  /* ---------- Controls ---------- */
+  .controls{
+    position:sticky;top:0;z-index:40;
+    background:rgba(245,241,232,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:14px 26px;
+    box-shadow:0 6px 20px -16px rgba(28,36,33,.5);
+  }
+  .controls .wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  .searchrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .search{
+    flex:1;min-width:220px;position:relative;
+  }
+  .search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.45}
+  .search input{
+    width:100%;font-family:inherit;font-size:1rem;color:var(--ink);
+    padding:12px 14px 12px 42px;border:1.5px solid var(--line);
+    border-radius:10px;background:var(--card);transition:border-color .15s,box-shadow .15s;
+  }
+  .search input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(30,79,143,.15)}
+  .count{font-size:.82rem;color:var(--ink-faint);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .btn{
+    font-family:inherit;font-size:.82rem;font-weight:600;color:var(--brand);
+    background:var(--card);border:1.5px solid var(--line);border-radius:8px;
+    padding:9px 13px;cursor:pointer;transition:.15s;white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--brand);background:#fff}
+  .chiprow{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+  .chiprow .label{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-faint);font-weight:600;margin-right:2px}
+  .chip{
+    font-family:inherit;font-size:.82rem;font-weight:600;
+    padding:6px 13px;border-radius:30px;cursor:pointer;
+    border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);
+    transition:.15s;
+  }
+  .chip:hover{border-color:var(--brand)}
+  .chip.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .chip.str.active[data-str="rct"]{background:var(--rct);border-color:var(--rct)}
+  .chip.str.active[data-str="guideline"]{background:var(--guide);border-color:var(--guide)}
+  .chip.str.active[data-str="expert"]{background:var(--expert);border-color:var(--expert)}
+  .chip.str.active[data-str="practice"]{background:var(--practice);border-color:var(--practice)}
+  /* ---------- Main ---------- */
+  main{max-width:1120px;margin:0 auto;padding:30px 26px 60px}
+  .legend{
+    display:flex;gap:18px;flex-wrap:wrap;margin-bottom:26px;
+    font-size:.8rem;color:var(--ink-soft);align-items:center;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;
+  }
+  .legend .item{display:flex;align-items:center;gap:7px}
+  .dot{width:11px;height:11px;border-radius:3px;flex:none}
+  .dot.rct{background:var(--rct)}.dot.guideline{background:var(--guide)}
+  .dot.expert{background:var(--expert)}.dot.practice{background:var(--practice)}
+  section.spec{margin-bottom:34px;scroll-margin-top:150px}
+  .spec-head{
+    display:flex;align-items:baseline;gap:14px;cursor:pointer;
+    padding:12px 4px;border-bottom:2px solid var(--brand);user-select:none;
+  }
+  .spec-head h2{
+    font-family:"Fraunces",serif;font-weight:600;font-size:1.55rem;color:var(--brand-deep);
+    letter-spacing:-.01em;display:flex;align-items:center;gap:10px;
+  }
+  .spec-head .full{font-family:"Hanken Grotesk";font-size:.82rem;color:var(--ink-faint);font-weight:500;letter-spacing:0}
+  .spec-head .cnt{margin-left:auto;font-size:.8rem;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+  .spec-head .caret{transition:transform .25s;color:var(--brand);font-size:1rem}
+  section.spec.collapsed .caret{transform:rotate(-90deg)}
+  section.spec.collapsed .cards{display:none}
+  .cards{display:grid;gap:14px;margin-top:16px}
+  /* ---------- Card ---------- */
+  .card{
+    background:var(--card);border:1px solid var(--line);
+    border-left:5px solid var(--ink-faint);
+    border-radius:11px;padding:18px 20px;box-shadow:var(--shadow);
+    transition:transform .12s,box-shadow .12s;
+  }
+  .card[data-str="rct"]{border-left-color:var(--rct)}
+  .card[data-str="guideline"]{border-left-color:var(--guide)}
+  .card[data-str="expert"]{border-left-color:var(--expert)}
+  .card.practice{border-left-color:var(--practice)}
+  .card:hover{transform:translateY(-1px);box-shadow:0 2px 4px rgba(28,36,33,.07),0 16px 30px -16px rgba(28,36,33,.28)}
+  .card .rec{
+    font-family:"Fraunces",serif;font-weight:600;font-size:1.15rem;line-height:1.25;
+    color:var(--ink);margin-bottom:3px;
+  }
+  .card .ctx{font-size:.88rem;color:var(--ink-faint);font-style:italic;margin-bottom:11px}
+  .badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:11px}
+  .badge{
+    font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    padding:3px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:5px;
+  }
+  .badge.rct{background:var(--rct-bg);color:var(--rct)}
+  .badge.guideline{background:var(--guide-bg);color:var(--guide)}
+  .badge.expert{background:var(--expert-bg);color:var(--expert)}
+  .badge.practice{background:var(--practice-bg);color:var(--practice)}
+  .badge.recheck{background:#e9e4f2;color:#5a4a86}
+  .btn.active{background:#5a4a86;color:#fff;border-color:#5a4a86}
+  .card .evi{font-size:.95rem;color:var(--ink-soft);line-height:1.58}
+  .src{margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);display:flex;gap:8px;flex-wrap:wrap;align-items:baseline}
+  .src .srclabel{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint);font-weight:700}
+  .src a,.src span.nolink{
+    font-size:.82rem;color:var(--brand);text-decoration:none;font-weight:600;
+    border-bottom:1px solid rgba(30,79,143,.3);
+  }
+  .src a:hover{border-bottom-color:var(--brand)}
+  .src a.srch{color:var(--ink-soft);font-weight:500;border-bottom:1px dotted var(--ink-faint)}
+  .src a.srch:hover{color:var(--brand);border-bottom-color:var(--brand)}
+  .src span.nolink{color:var(--ink-soft);font-weight:500;border-bottom:1px dotted var(--ink-faint)}
+  mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
+  .noresult{text-align:center;padding:50px 20px;color:var(--ink-faint);font-size:1rem}
+  footer{
+    max-width:1120px;margin:0 auto;padding:26px;border-top:1px solid var(--line);
+    font-size:.82rem;color:var(--ink-faint);line-height:1.6;
+  }
+  footer strong{color:var(--ink-soft)}
+  @media (max-width:600px){
+    main{padding:22px 16px 50px}.controls{padding:12px 16px}
+    header.masthead{padding:26px 16px}
+    .card{padding:15px 16px}
+  }
+  @media print{
+    .controls,.disclaimer{display:none}
+    section.spec.collapsed .cards{display:grid}
+    .card{break-inside:avoid;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Inpatient consult reference</div>
+    <h1>Specialist Recommendations <em>in the Inpatient Setting</em></h1>
+    <p class="lede">Common recommendations specialty consult services give the primary team — each paired with the evidence behind it, the trials or guidelines it rests on, and an honest flag where the evidence is thin or where common practice diverges from what the data actually show.</p>
+  </div>
+</header>
+
+<div class="disclaimer">
+  <strong>Educational reference only.</strong> This is a teaching aid summarizing common consult recommendations and their evidence base — not a substitute for current guidelines, institutional protocols, primary literature, or your own clinical judgment. Dosing examples are illustrative; always verify against an up-to-date source. Evidence summaries are condensed; follow the linked sources for full detail. <strong>Guidelines reviewed June 2026.</strong>
+</div>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="searchrow">
+      <div class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="text" placeholder="Search recommendations, drugs, trials  (e.g. platelets, keppra, WATERFALL, transfusion)" autocomplete="off">
+      </div>
+      <span class="count" id="count"></span>
+      <button class="btn" id="recheckBtn" title="Show only cards tied to guidelines that revise on a fast cycle (ADA, GINA, GOLD, KDIGO AKI)">↻ Re-check list</button>
+      <button class="btn" id="toggleAll">Collapse all</button>
+    </div>
+    <div class="chiprow" id="specChips">
+      <span class="label">Specialty</span>
+      <button class="chip active" data-spec="all">All</button>
+    </div>
+    <div class="chiprow" id="strChips">
+      <span class="label">Evidence</span>
+      <button class="chip str active" data-str="all">All</button>
+      <button class="chip str" data-str="rct">Trial / RCT</button>
+      <button class="chip str" data-str="guideline">Guideline</button>
+      <button class="chip str" data-str="expert">Expert / limited</button>
+      <button class="chip str" data-str="practice">Practice check</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="legend">
+    <span style="font-weight:700;color:var(--ink-soft);text-transform:uppercase;font-size:.72rem;letter-spacing:.12em">Evidence key</span>
+    <span class="item"><span class="dot rct"></span> Randomized trial / strong evidence</span>
+    <span class="item"><span class="dot guideline"></span> Society guideline / consensus</span>
+    <span class="item"><span class="dot expert"></span> Expert opinion / limited or mixed evidence</span>
+    <span class="item"><span class="dot practice"></span> Practice check — common practice diverges from the evidence</span>
+  </div>
+  <div id="app"></div>
+  <div class="noresult" id="noresult" style="display:none">No recommendations match your search or filters.</div>
+</main>
+
+<footer>
+  <p><strong>About the evidence flags.</strong> "Trial / RCT" marks recommendations anchored by randomized trials. "Guideline" marks society/consensus recommendations that may rest on observational or mixed data. "Expert / limited" marks practices driven largely by expert opinion, physiologic rationale, or low-quality evidence — common but not strongly proven. "Practice check" highlights recommendations that are frequently given but that current evidence does <em>not</em> support, or actively argues against.</p>
+  <p style="margin-top:10px"><strong>About the citation links.</strong> Every source is clickable. A <strong>↗</strong> opens the source document or trial directly (publishers don't expose stable links to a specific section, so these land on the document itself). A <strong>⌕</strong> is a one-click lookup that searches for that exact guideline or trial — used where a verified direct link wasn't available. Always confirm against the current version of the relevant guideline.</p>
+  <p style="margin-top:10px"><strong>Guideline currency (reviewed June 2026).</strong> Citations were checked for major revisions — for example, the 2025 ACC/AHA Acute Coronary Syndromes guideline (which replaced the older STEMI/NSTEMI documents) and the 2025 ACC/AHA Hypertension guideline are reflected. Note that some bodies update on their own cycles: the ADA Standards of Care, GINA (asthma), and GOLD (COPD) are revised annually — always check the current year's edition; and the KDIGO AKI guideline remains the 2012 version, with a 2026 update in public review. This tool cannot guarantee every citation is the very latest version, so confirm against the live guideline before acting on any recommendation. Cards tied to these fast-cycle guidelines carry a <strong>↻ Verify currency</strong> badge — use the <strong>↻ Re-check list</strong> button up top to pull them all up for a periodic review.</p>
+</footer>
+
+<script>
+/* ============================================================
+   DATA
+   s  = specialty key
+   r  = recommendation (with illustrative dosing where useful)
+   c  = clinical context / when it comes up
+   e  = evidence summary (teaching depth, 2-4 sentences)
+   st = strength: rct | guideline | expert
+   p  = true => "practice check" flag (overrides left border)
+   src= [{t:title, u:url}]  (omit u for name-only citation)
+============================================================ */
+const SPECS = {
+  nsgy:{name:"Neurosurgery",full:"NSGY"},
+  hemonc:{name:"Hematology / Oncology",full:"Heme · Onc"},
+  gi:{name:"Gastroenterology / Hepatology",full:"GI"},
+  pulm:{name:"Pulmonary / Critical Care",full:"Pulm · CC"},
+  cardio:{name:"Cardiology",full:"Cardiology"},
+  obgyn:{name:"Obstetrics & Gynecology",full:"OB / GYN"},
+  neuro:{name:"Neurology",full:"Neuro"},
+  id:{name:"Infectious Disease",full:"ID"},
+  endo:{name:"Endocrinology",full:"Endocrine"},
+  nephro:{name:"Nephrology",full:"Nephro"},
+  surg:{name:"General Surgery",full:"Gen Surg"},
+  ent:{name:"Otolaryngology (ENT)",full:"ENT"},
+  rheum:{name:"Rheumatology",full:"Rheum"}
+};
+
+const DATA = [
+/* ===================== NEUROSURGERY ===================== */
+{s:"nsgy",st:"guideline",p:true,
+ r:"Do NOT start routine seizure prophylaxis (e.g. levetiracetam 500 mg BID) for spontaneous ICH",
+ c:"Brain bleed, no clinical or electrographic seizures",
+ e:"This is one of the most common — and most evidence-discordant — consult reflexes. The 2022 AHA/ASA ICH guideline states prophylactic antiseizure medication in spontaneous ICH without seizures does not improve functional outcome, seizure control, or mortality (Class 3, no benefit). The 2024 PEACH RCT found levetiracetam cut early electroclinical seizures (16% vs 43%) but produced no functional benefit. Treat documented clinical/electrographic seizures or NCSE — don't prophylax.",
+ src:[{t:"AHA/ASA 2022 ICH Guideline (Stroke)",u:"https://www.ahajournals.org/doi/10.1161/STROKEAHA.116.012410"},{t:"Neurocritical Care Society ASM guideline 2024",u:"https://link.springer.com/article/10.1007/s12028-024-02183-z"}]},
+
+{s:"nsgy",st:"guideline",
+ r:"Short-course (7-day) seizure prophylaxis for severe TBI",
+ c:"Severe traumatic brain injury, early post-traumatic seizure prevention",
+ e:"Unlike spontaneous ICH, severe TBI is the one setting where prophylaxis is supported. The original Temkin RCT showed phenytoin reduces EARLY (≤7 day) post-traumatic seizures but not late seizures, so Brain Trauma Foundation guidelines recommend only a 7-day course. Levetiracetam and phenytoin are comparably effective, with levetiracetam favored for fewer interactions and no need for levels.",
+ src:[{t:"Brain Trauma Foundation TBI Guidelines"},{t:"Temkin NEJM 1990 (phenytoin RCT)"}]},
+
+{s:"nsgy",st:"rct",
+ r:"Avoid aggressive SBP lowering below 140 in spontaneous ICH; reasonable target ~130–150",
+ c:"Acute spontaneous ICH presenting with SBP 150–220",
+ e:"INTERACT2 (intensive <140 vs <180) showed only a non-significant functional benefit, and ATACH-2 (110–139 vs 140–179) found no outcome benefit with more renal adverse events. Smooth, early control to roughly 130–150 with an agent like nicardipine is reasonable; pushing aggressively below 140 is not. Avoid large swings — variability itself associates with worse outcomes.",
+ src:[{t:"ATACH-2, NEJM 2016",u:"https://www.nejm.org/doi/full/10.1056/NEJMoa1603460"},{t:"INTERACT2, NEJM 2013"}]},
+
+{s:"nsgy",st:"guideline",
+ r:"Rapidly reverse anticoagulation in ICH: 4-factor PCC + IV vitamin K for warfarin",
+ c:"Anticoagulant-associated intracranial hemorrhage",
+ e:"For warfarin-associated ICH, 4-factor PCC corrects the INR faster and with less volume than FFP (INCH trial) — give with IV vitamin K for durable reversal. For factor Xa inhibitors (apixaban/rivaroxaban), 4F-PCC is now the standard of care in the US: andexanet alfa (Andexxa) was voluntarily withdrawn from the US market in December 2025 after the ANNEXA-I trial showed roughly doubled thrombotic events and thrombosis-related deaths versus usual care (it remains available in some countries as Ondexxya). Idarucizumab reverses dabigatran (REVERSE-AD).",
+ src:[{t:"AHA/ASA 2022 ICH Guideline"},{t:"INCH, Lancet Neurol 2016"},{t:"FDA Andexxa safety communication 2025",u:"https://www.fda.gov/safety/medical-product-safety-information/update-safety-andexxa-astrazeneca-fda-safety-communication"},{t:"ANNEXA-I, NEJM 2024"}]},
+
+{s:"nsgy",st:"rct",
+ r:"Oral nimodipine 60 mg q4h × 21 days for aneurysmal subarachnoid hemorrhage",
+ c:"Confirmed aneurysmal SAH",
+ e:"Nimodipine is the only drug shown to improve neurological outcomes after aneurysmal SAH, reducing poor outcomes from delayed cerebral ischemia — even though it does not actually reduce angiographic vasospasm. The benefit comes from neuroprotection, not vessel caliber. Hold or split dosing if it drops blood pressure; do not stop reflexively.",
+ src:[{t:"British Aneurysm Nimodipine Trial, BMJ 1989"},{t:"AHA/ASA aneurysmal SAH guideline"}]},
+
+{s:"nsgy",st:"rct",
+ r:"Give tranexamic acid early (within 3 h) in mild–moderate TBI",
+ c:"Traumatic brain injury, GCS 9–15, presenting <3 h from injury",
+ e:"CRASH-3 found TXA reduced head-injury–related death in mild-to-moderate TBI (GCS 9–15) when given within 3 hours, with no increase in vascular occlusive events. There was no benefit in severe TBI with unreactive pupils (large established bleeds). Earlier administration is better — the effect is time-dependent.",
+ src:[{t:"CRASH-3, Lancet 2019",u:"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(19)32233-0/fulltext"}]},
+
+{s:"nsgy",st:"rct",p:true,
+ r:"Do NOT routinely transfuse platelets for antiplatelet-associated spontaneous ICH",
+ c:"Spontaneous ICH in a patient on aspirin/clopidogrel, no planned surgery",
+ e:"A frequent reflexive order that the evidence contradicts. The PATCH RCT found platelet transfusion for antiplatelet-associated spontaneous ICH led to WORSE outcomes (higher death/dependence) than standard care. Reserve platelets for patients heading to neurosurgery or with severe thrombocytopenia — not to 'reverse' antiplatelet effect.",
+ src:[{t:"PATCH trial, Lancet 2016"}]},
+
+{s:"nsgy",st:"expert",
+ r:"Hyperosmolar therapy (hypertonic saline or mannitol) for elevated ICP / impending herniation",
+ c:"Acute intracranial hypertension, herniation signs",
+ e:"Both lower ICP acutely; head-of-bed to 30°, normocapnia, and treating fever/pain are adjuncts. Hypertonic saline is increasingly preferred (no diuresis-related hypovolemia, useful when hypotensive), but high-quality head-to-head mortality RCTs are limited and choice is largely physiologic/expert-driven. Mannitol can cause hypovolemia and rebound; follow osmolar gap/sodium.",
+ src:[{t:"Neurocritical Care Society guidelines"},{t:"Brain Trauma Foundation"}]},
+
+{s:"nsgy",st:"guideline",
+ r:"Start mechanical VTE prophylaxis (IPC) at admission; add pharmacologic ppx once the hematoma is stable (~48 h)",
+ c:"ICH or post-craniotomy, balancing VTE vs rebleed risk",
+ e:"Intermittent pneumatic compression from admission reduces VTE and is supported by CLOTS-3. Guidelines suggest low-dose heparin/LMWH can be added after documented bleed stability (often 24–48 h, repeat imaging stable), though the exact timing rests on observational data and consensus rather than strong RCTs.",
+ src:[{t:"CLOTS-3, Lancet 2013"},{t:"AHA/ASA 2022 ICH Guideline"}]},
+
+{s:"nsgy",st:"guideline",p:true,
+ r:"Do NOT give high-dose methylprednisolone for acute traumatic spinal cord injury",
+ c:"Acute traumatic SCI",
+ e:"Once routine after the NASCIS trials, high-dose steroids are no longer recommended: the apparent benefit came from post-hoc subgroups, while harms (infection, hyperglycemia, GI bleed, respiratory complications) are real. Modern guidelines (e.g. AANS/CNS) recommend against routine use. This remains a frequent 'reflex' request worth questioning.",
+ src:[{t:"AANS/CNS SCI guidelines"},{t:"NASCIS II/III re-analyses"}]},
+
+{s:"nsgy",st:"guideline",
+ r:"Dexamethasone for vasogenic edema from brain tumor or metastasis",
+ c:"Symptomatic peritumoral edema",
+ e:"Steroids rapidly reduce vasogenic edema around tumors/abscess and improve neurologic symptoms — a well-accepted indication. Crucially, this does NOT extend to cytotoxic edema from ischemic stroke or traumatic contusion, where steroids are ineffective or harmful. Use the lowest effective dose and taper.",
+ src:[{t:"NCCN CNS / neuro-oncology guidance"}]},
+
+{s:"nsgy",st:"expert",
+ r:"Avoid hypotonic fluids; keep at least isotonic (often hypertonic) maintenance in SAH/brain injury",
+ c:"Hyponatremia or fluid management in SAH/TBI",
+ e:"Hypotonic fluid worsens cerebral edema and hyponatremia. In SAH especially, avoid fluid restriction even for hyponatremia (risk of hypovolemia and delayed cerebral ischemia); distinguish cerebral salt wasting (hypovolemic — replace salt/volume) from SIADH. Management is largely expert-driven and individualized.",
+ src:[{t:"Neurocritical Care Society SAH guidance"}]},
+
+{s:"nsgy",st:"expert",
+ r:"Periprocedural antibiotic prophylaxis for EVD placement — but no prolonged courses",
+ c:"External ventricular drain, infection prevention",
+ e:"Peri-insertion antibiotics are standard. Prolonged systemic prophylaxis for the duration of the drain is not supported and drives resistance; antibiotic-impregnated catheters reduce infection in some studies. Evidence is mixed and practice varies by institution.",
+ src:[{t:"Neurocritical Care Society EVD guidance"}]},
+
+{s:"nsgy",st:"guideline",
+ r:"Maintain normothermia and avoid hyper-/hypoglycemia after acute brain injury",
+ c:"General neuro-ICU supportive care",
+ e:"Fever worsens secondary brain injury, so targeted normothermia is recommended; tight glycemic control is balanced against hypoglycemia risk (avoid both extremes, typical target ~140–180 mg/dL). These are supportive measures backed by association data and consensus rather than definitive outcome RCTs.",
+ src:[{t:"Neurocritical Care Society / SCCM guidance"}]},
+
+/* ===================== HEME / ONC ===================== */
+{s:"hemonc",st:"guideline",
+ r:"Prophylactic platelet transfusion at ≤10 × 10⁹/L in stable hypoproliferative thrombocytopenia",
+ c:"Chemo-induced thrombocytopenia, no bleeding or procedure",
+ e:"The AABB recommends prophylactic platelets at a count ≤10k to reduce spontaneous bleeding in hospitalized adults with therapy-induced hypoproliferative thrombocytopenia. This threshold is supported by the PLADO and TOPPS RCTs. A 'low-dose' unit is as effective as standard dose for prophylaxis (PLADO).",
+ src:[{t:"AABB Platelet Transfusion Guideline, Ann Intern Med 2015",u:"https://www.acpjournals.org/doi/10.7326/M14-1589"},{t:"PLADO, NEJM 2010"},{t:"TOPPS, NEJM 2013"}]},
+
+{s:"hemonc",st:"expert",
+ r:"Higher platelet thresholds for procedures: ~50k for most invasive procedures, ~100k for CNS/neurosurgery",
+ c:"Pre-procedure platelet target",
+ e:"These higher thresholds (50k for surgery/most procedures, 50k for LP, ~100k for neurosurgical/ophthalmic procedures) are widely used but are based largely on expert opinion and low-quality evidence rather than RCTs. Tailor to procedure bleeding risk and clinical context.",
+ src:[{t:"AABB transfusion threshold guidance"}]},
+
+{s:"hemonc",st:"rct",
+ r:"Restrictive RBC transfusion: threshold Hgb 7 g/dL for most stable inpatients",
+ c:"Anemia in the hospitalized, hemodynamically stable patient",
+ e:"TRICC established that a restrictive strategy (transfuse at <7) is as good as or better than liberal (<10) in stable critically ill patients. Use 7–8 g/dL for cardiac/orthopedic surgery patients. The exception: acute MI/ACS, where the MINT trial suggests a more liberal threshold (~10) may be reasonable.",
+ src:[{t:"TRICC, NEJM 1999"},{t:"AABB RBC guidelines, JAMA 2023"},{t:"MINT, NEJM 2023"}]},
+
+{s:"hemonc",st:"guideline",
+ r:"Empiric broad-spectrum antipseudomonal antibiotic within 1 hour for neutropenic fever",
+ c:"Febrile neutropenia (ANC <500)",
+ e:"IDSA recommends empiric monotherapy with an antipseudomonal β-lactam (cefepime, piperacillin-tazobactam, or a carbapenem) administered within ~1 hour. Add vancomycin only for specific indications (suspected line infection, skin/soft tissue, hemodynamic instability, MRSA risk) — not routinely. Risk-stratify with the MASCC score; selected low-risk patients can take oral therapy.",
+ src:[{t:"IDSA Febrile Neutropenia Guideline"}]},
+
+{s:"hemonc",st:"guideline",
+ r:"Rasburicase for high-risk or established tumor lysis syndrome; allopurinol + hydration for prevention",
+ c:"TLS prophylaxis/treatment in bulky/high-turnover malignancy",
+ e:"Aggressive IV hydration is the backbone. Allopurinol prevents new urate formation (prophylaxis); rasburicase enzymatically degrades existing uric acid and is used for high-risk or established TLS with high urate. Rasburicase is contraindicated in G6PD deficiency (hemolysis risk).",
+ src:[{t:"ASCO / TLS expert panel guidance"}]},
+
+{s:"hemonc",st:"rct",
+ r:"Treat cancer-associated VTE with a DOAC (apixaban, edoxaban, or rivaroxaban) — or LMWH",
+ c:"Acute VTE in a patient with active cancer",
+ e:"DOACs are at least as effective as LMWH (dalteparin, the old CLOT standard): apixaban (Caravaggio), edoxaban (Hokusai-VTE Cancer), and rivaroxaban (SELECT-D) all showed non-inferior recurrence. Edoxaban and rivaroxaban raised GI bleeding, concentrated in GI/GU cancers — so for luminal GI malignancy, apixaban or LMWH is preferred. Anticoagulate ≥3–6 months, extended while cancer is active.",
+ src:[{t:"Caravaggio (apixaban), NEJM 2020",u:"https://ascopost.com/news/april-2020/apixaban-for-cancer-associated-vte/"},{t:"Hokusai-VTE Cancer (edoxaban), NEJM 2018"},{t:"SELECT-D (rivaroxaban), JCO 2018"}]},
+
+{s:"hemonc",st:"guideline",
+ r:"Dexamethasone immediately + urgent MRI for suspected malignant spinal cord compression",
+ c:"New back pain + neuro deficit in a cancer patient",
+ e:"Give corticosteroids (e.g. dexamethasone) at first suspicion to reduce edema, then obtain urgent whole-spine MRI and involve radiation oncology/neurosurgery. The Patchell RCT showed surgery plus radiotherapy beats radiotherapy alone for preserving ambulation in selected patients. Time to treatment strongly predicts neurologic recovery.",
+ src:[{t:"Patchell, Lancet 2005 (surgery + RT)"},{t:"NCCN / ASCO guidance"}]},
+
+{s:"hemonc",st:"guideline",
+ r:"IV fluids + bisphosphonate (or denosumab) for hypercalcemia of malignancy; calcitonin for rapid effect",
+ c:"Symptomatic or severe malignant hypercalcemia",
+ e:"Isotonic saline restores volume and increases calcium excretion first. A bisphosphonate (zoledronic acid) or denosumab provides durable control but takes 2–4 days to work; calcitonin gives a faster but transient drop (tachyphylaxis within ~48 h) as a bridge. Avoid loop diuretics unless volume-overloaded.",
+ src:[{t:"Endocrine Society / NCCN guidance"}]},
+
+{s:"hemonc",st:"guideline",
+ r:"G-CSF for secondary prophylaxis or high-FN-risk regimens — not as treatment of established febrile neutropenia",
+ c:"Chemotherapy neutropenia management",
+ e:"Primary G-CSF prophylaxis is indicated when a regimen's febrile-neutropenia risk is ≥20%, and secondary prophylaxis after a prior FN episode. Routine 'add G-CSF' for an established, uncomplicated febrile neutropenia episode is not recommended and offers little benefit on outcomes.",
+ src:[{t:"ASCO White Blood Cell Growth Factor Guideline"}]},
+
+{s:"hemonc",st:"guideline",
+ r:"Cryoprecipitate for fibrinogen <100–150 mg/dL with bleeding (e.g. DIC, APL)",
+ c:"Hypofibrinogenemia with active bleeding or high-risk coagulopathy",
+ e:"In DIC or acute promyelocytic leukemia, replace fibrinogen with cryoprecipitate to keep it above ~100–150 mg/dL when bleeding. In APL, start ATRA immediately on suspicion (don't wait for confirmation) and aggressively support coagulation, as early hemorrhagic death is the main killer.",
+ src:[{t:"ISTH DIC guidance"},{t:"APL management guidelines"}]},
+
+{s:"hemonc",st:"guideline",
+ r:"Reverse warfarin with vitamin K + 4-factor PCC for major/critical bleeding",
+ c:"Major bleeding on warfarin in the oncology/heme patient",
+ e:"For life-threatening or critical-site bleeding, 4F-PCC plus IV vitamin K corrects the INR faster and with less volume than plasma. For non-bleeding supratherapeutic INR, hold warfarin ± low-dose oral vitamin K rather than reversing fully.",
+ src:[{t:"ACCP / ASH anticoagulation guidance"}]},
+
+{s:"hemonc",st:"expert",
+ r:"Adjust anticoagulation by platelet count in thrombocytopenic cancer patients",
+ c:"Concurrent VTE and thrombocytopenia",
+ e:"Consensus (ISTH/ASH guidance) suggests full-dose anticoagulation when platelets are >50k, dose reduction or platelet support in the 25–50k range, and generally holding below 25k — individualized by clot acuity and bleeding risk. This balance is driven by expert opinion, not RCTs.",
+ src:[{t:"ISTH / ASH cancer-thrombocytopenia guidance"}]},
+
+{s:"hemonc",st:"expert",
+ r:"Use a restrictive transfusion approach in chronic/stable anemia; avoid reflexive 'transfuse to a number'",
+ c:"Chronic anemia of malignancy without active bleeding",
+ e:"Over-transfusion is common and carries risk (volume overload, alloimmunization, iron overload). In stable chronic anemia, transfuse for symptoms rather than a fixed target, and consider treating the underlying cause (iron, EPO in selected settings) instead.",
+ src:[{t:"AABB / Choosing Wisely (hematology)"}]},
+
+/* ===================== GI / HEPATOLOGY ===================== */
+{s:"gi",st:"rct",
+ r:"Restrictive transfusion (Hgb 7) in acute upper GI bleeding",
+ c:"Acute UGIB, hemodynamically stable, not exsanguinating",
+ e:"Villanueva's landmark RCT found a restrictive threshold of 7 g/dL improved 6-week survival and reduced rebleeding versus a liberal threshold of 9. Over-transfusion can raise portal pressure and worsen variceal bleeding. The trial excluded massive exsanguinating bleeds and ACS — use clinical judgment there.",
+ src:[{t:"Villanueva, NEJM 2013",u:"https://www.nejm.org/doi/full/10.1056/NEJMoa1211801"}]},
+
+{s:"gi",st:"rct",
+ r:"Ceftriaxone prophylaxis for every cirrhotic with GI bleeding",
+ c:"Cirrhosis + upper GI bleed (variceal or non-variceal)",
+ e:"Antibiotic prophylaxis reduces infections, rebleeding, and mortality in cirrhotic GI bleeding. IV ceftriaxone is preferred over norfloxacin in advanced cirrhosis (Fernández 2006), particularly where quinolone resistance is common. Start it on presentation — don't wait for an infection.",
+ src:[{t:"Fernández, Gastroenterology 2006",u:"https://www.gastrojournal.org/article/S0016-5085(06)01535-6/fulltext"},{t:"AASLD portal hypertension guidance"}]},
+
+{s:"gi",st:"guideline",
+ r:"Octreotide (vasoactive) + early endoscopy for suspected variceal bleeding",
+ c:"Variceal hemorrhage in cirrhosis",
+ e:"Start a splanchnic vasoconstrictor (octreotide, or terlipressin where available) on suspicion to lower portal pressure, alongside resuscitation and antibiotics, with endoscopic band ligation within ~12 hours. The combination of pharmacologic plus endoscopic therapy outperforms either alone.",
+ src:[{t:"AASLD / Baveno consensus"}]},
+
+{s:"gi",st:"rct",
+ r:"IV ceftriaxone + IV albumin (1.5 g/kg day 1, 1 g/kg day 3) for spontaneous bacterial peritonitis",
+ c:"Ascitic fluid PMN ≥250/mm³",
+ e:"Empiric third-generation cephalosporin is first-line. Adding albumin (Sort 1999) reduces renal impairment and mortality, with the largest benefit in those with renal dysfunction or bilirubin >4. Diagnose by ascitic PMN ≥250; hold non-selective beta-blockers if hypotensive.",
+ src:[{t:"Sort, NEJM 1999 (albumin in SBP)"},{t:"AASLD ascites/SBP guidance"}]},
+
+{s:"gi",st:"guideline",
+ r:"Long-term SBP prophylaxis after a first episode (or with high-risk low-protein ascites)",
+ c:"Prior SBP, or ascitic protein <1.5 with renal/hepatic dysfunction",
+ e:"Daily norfloxacin or ciprofloxacin (or TMP-SMX) reduces SBP recurrence in survivors and in selected primary-prophylaxis candidates. Balance against resistance; this is distinct from the short ceftriaxone course given during an acute GI bleed.",
+ src:[{t:"AASLD ascites/SBP guidance"}]},
+
+{s:"gi",st:"rct",
+ r:"Lactulose first-line for hepatic encephalopathy; add rifaximin for recurrence",
+ c:"Overt hepatic encephalopathy",
+ e:"Titrate lactulose to 2–3 soft stools daily. Rifaximin added to lactulose significantly reduces recurrent overt HE episodes and HE-related hospitalizations (Bass RCT). Always look for and treat the precipitant (infection, GI bleed, electrolytes, constipation, sedatives).",
+ src:[{t:"Bass, NEJM 2010 (rifaximin)"},{t:"AASLD HE guidance"}]},
+
+{s:"gi",st:"rct",p:true,
+ r:"Use MODERATE, not aggressive, fluid resuscitation in acute pancreatitis (LR preferred)",
+ c:"Acute pancreatitis, early phase",
+ e:"The old teaching of 'aggressive hydration' is contradicted by the WATERFALL RCT: aggressive resuscitation caused more fluid overload with no improvement in outcomes, and the trial was stopped early for safety. Use moderate goal-directed lactated Ringer's (~1.5 mL/kg/h, modest bolus only if hypovolemic). LR is preferred over normal saline.",
+ src:[{t:"WATERFALL, NEJM 2022",u:"https://www.nejm.org/doi/full/10.1056/NEJMoa2202884"}]},
+
+{s:"gi",st:"guideline",p:true,
+ r:"Treat C. difficile with fidaxomicin or oral vancomycin — metronidazole is no longer first-line",
+ c:"C. difficile infection",
+ e:"The 2021 IDSA/SHEA update moved away from oral metronidazole, recommending fidaxomicin (preferred) or oral vancomycin for both initial and recurrent CDI. Reserve metronidazole (IV, added to high-dose oral/PR vancomycin) for fulminant disease. Many teams still reflexively reach for metronidazole — check the current guideline.",
+ src:[{t:"IDSA/SHEA C. difficile Guideline 2021"}]},
+
+{s:"gi",st:"rct",
+ r:"Albumin + a vasoconstrictor (terlipressin, or norepinephrine / midodrine-octreotide) for hepatorenal syndrome",
+ c:"HRS-AKI in decompensated cirrhosis",
+ e:"After volume expansion with albumin, add a vasoconstrictor to counter splanchnic vasodilation. Terlipressin improved HRS reversal in the CONFIRM trial (watch for respiratory/ischemic adverse events); norepinephrine (ICU) or midodrine + octreotide are alternatives. Definitive therapy is liver transplant.",
+ src:[{t:"CONFIRM (terlipressin), NEJM 2021"},{t:"AASLD guidance"}]},
+
+{s:"gi",st:"rct",
+ r:"Prednisolone for severe alcohol-associated hepatitis (Maddrey DF ≥32); reassess with Lille at day 7",
+ c:"Severe alcoholic hepatitis",
+ e:"In severe disease, corticosteroids modestly improve short-term (28-day) survival but not 90-day or 1-year mortality (STOPAH). Use the Lille score at day 7 to identify non-responders and stop steroids. Exclude active uncontrolled infection or GI bleeding before starting.",
+ src:[{t:"STOPAH, NEJM 2015"}]},
+
+{s:"gi",st:"guideline",
+ r:"Urgent ERCP only for cholangitis or persistent biliary obstruction — not routinely for gallstone pancreatitis",
+ c:"Gallstone pancreatitis",
+ e:"Early ERCP benefits patients with concurrent acute cholangitis or ongoing biliary obstruction; in predicted-severe gallstone pancreatitis without cholangitis, routine early ERCP does not improve outcomes (APEC trial). Cholecystectomy during the same admission prevents recurrence in mild disease.",
+ src:[{t:"APEC trial, Lancet 2020"},{t:"ACG pancreatitis guideline"}]},
+
+{s:"gi",st:"rct",
+ r:"Feed early — don't keep acute pancreatitis patients NPO",
+ c:"Mild–moderate acute pancreatitis",
+ e:"Early oral or enteral feeding (as tolerated, low-fat) is safe and may shorten stay; prolonged NPO and routine nasojejunal feeding offer no advantage in mild disease (PYTHON). When enteral nutrition is needed in severe disease, it is preferred over parenteral.",
+ src:[{t:"PYTHON, NEJM 2014"},{t:"ACG pancreatitis guideline"}]},
+
+{s:"gi",st:"rct",
+ r:"Consider early (pre-emptive) TIPS in high-risk variceal bleeding",
+ c:"Acute variceal bleed, Child-Pugh C (<14) or Child B with active bleeding at endoscopy",
+ e:"In selected high-risk cirrhotics, early TIPS placed within ~72 hours reduces rebleeding and improves survival versus standard endoscopic + drug therapy (García-Pagán). Balloon tamponade or an esophageal stent serves only as a temporary bridge in uncontrolled bleeding.",
+ src:[{t:"García-Pagán (early TIPS), NEJM 2010"}]},
+
+{s:"gi",st:"guideline",
+ r:"Non-selective beta-blocker (carvedilol/propranolol/nadolol) for variceal prophylaxis — but hold during acute bleed/hypotension",
+ c:"Primary or secondary prophylaxis of variceal hemorrhage",
+ e:"NSBBs (carvedilol increasingly favored) lower portal pressure and prevent first and recurrent variceal bleeds. Hold them during active bleeding, hypotension, or refractory ascites with hemodynamic compromise, where they may worsen outcomes; resume once stable.",
+ src:[{t:"Baveno VII / AASLD guidance"}]},
+
+/* ===================== PULM / CRITICAL CARE ===================== */
+{s:"pulm",st:"rct",
+ r:"Prednisone 40 mg daily × 5 days for COPD exacerbation (not 10–14 days)",
+ c:"Acute exacerbation of COPD",
+ e:"The REDUCE RCT showed a 5-day steroid course is non-inferior to 14 days for re-exacerbation, lung function, and mortality — with less cumulative steroid exposure. Longer tapers are common but unnecessary for most exacerbations.",
+ src:[{t:"REDUCE, JAMA 2013",u:"https://www.pulmccm.org/p/in-copd-exacerbations-5-days-steroid-may-be-as-good-as-14"}]},
+
+{s:"pulm",st:"guideline",
+ r:"Add antibiotics for COPD exacerbation when sputum is increasingly purulent (or the patient is ventilated)",
+ c:"COPD exacerbation, deciding on antibiotics",
+ e:"Antibiotics help when at least two of increased dyspnea, sputum volume, and sputum purulence are present (especially purulence), or in mechanically ventilated patients (Anthonisen criteria). Not every exacerbation needs antibiotics; many are viral.",
+ src:[{t:"GOLD report / Anthonisen criteria"}]},
+
+{s:"pulm",st:"rct",
+ r:"Low-tidal-volume ventilation: 6 mL/kg predicted body weight, plateau pressure <30 in ARDS",
+ c:"Mechanically ventilated ARDS",
+ e:"The ARDSNet (ARMA) trial showed lung-protective ventilation at 6 mL/kg PBW reduced mortality versus 12 mL/kg. Target plateau pressure <30 cm H₂O and titrate PEEP; permissive hypercapnia is accepted. This is one of the most robust mortality interventions in critical care.",
+ src:[{t:"ARDSNet (ARMA), NEJM 2000"}]},
+
+{s:"pulm",st:"rct",
+ r:"Early prolonged prone positioning (16 h/day) for severe ARDS (P:F <150)",
+ c:"Severe ARDS despite lung-protective ventilation",
+ e:"PROSEVA randomized severe ARDS (P:F <150) to early, ≥16-hour prone sessions and found a striking mortality reduction (16% vs 33% at 28 days). Benefit is greatest in more severe ARDS with adequate session duration; requires a trained team for safe turns.",
+ src:[{t:"PROSEVA, NEJM 2013",u:"https://www.wikijournalclub.org/wiki/PROSEVA"}]},
+
+{s:"pulm",st:"guideline",
+ r:"Anticoagulate acute PE; a DOAC is first-line for most",
+ c:"Acute pulmonary embolism, hemodynamically stable",
+ e:"For most stable patients a DOAC (apixaban or rivaroxaban with no parenteral lead-in; dabigatran/edoxaban after LMWH) is preferred over warfarin. Outpatient management is reasonable for selected low-risk PE (e.g. sPESI 0 / Hestia-negative).",
+ src:[{t:"CHEST / ESC PE guidelines"}]},
+
+{s:"pulm",st:"rct",p:true,
+ r:"Systemic thrombolysis only for massive (high-risk) PE — not routinely for submassive PE",
+ c:"PE with hemodynamic instability vs RV strain alone",
+ e:"Thrombolysis is indicated for hemodynamically unstable (massive) PE. In submassive/intermediate-risk PE, the PEITHO trial showed thrombolysis reduced hemodynamic decompensation but significantly increased major and intracranial bleeding, with no mortality benefit — so it's not routine. Reserve for selected deteriorating patients.",
+ src:[{t:"PEITHO, NEJM 2014"}]},
+
+{s:"pulm",st:"guideline",
+ r:"Empiric CAP therapy: β-lactam + macrolide, or a respiratory fluoroquinolone",
+ c:"Community-acquired pneumonia requiring admission",
+ e:"The 2019 ATS/IDSA guideline recommends β-lactam plus macrolide (or a respiratory fluoroquinolone) for inpatients, adding MRSA/Pseudomonas coverage only with validated risk factors. The old 'HCAP' category was retired — don't broaden empirically without real risk factors.",
+ src:[{t:"ATS/IDSA CAP Guideline 2019"}]},
+
+{s:"pulm",st:"rct",
+ r:"Hydrocortisone for severe community-acquired pneumonia",
+ c:"Severe CAP (ICU-level), no contraindication",
+ e:"The CAPE COD RCT found early hydrocortisone reduced mortality in severe CAP. Benefit is specific to severe disease — steroids are not indicated for mild/moderate CAP, and avoid in suspected influenza/aspergillosis.",
+ src:[{t:"CAPE COD, NEJM 2023"}]},
+
+{s:"pulm",st:"guideline",
+ r:"Asthma exacerbation: systemic steroids + frequent SABA ± ipratropium; IV magnesium for severe",
+ c:"Acute asthma exacerbation",
+ e:"Early systemic corticosteroids plus inhaled short-acting beta-agonists are the backbone; add ipratropium in moderate-severe cases. A single dose of IV magnesium sulfate can help severe/refractory exacerbations and reduce admissions; antibiotics are not routine.",
+ src:[{t:"GINA report"}]},
+
+{s:"pulm",st:"rct",
+ r:"Avoid hyperoxia — target SpO₂ roughly 90–96%, not 100%",
+ c:"Oxygen titration in acute illness",
+ e:"Liberal/excess oxygen is associated with harm in several conditions (e.g. post-arrest, stroke, MI). Guidelines favor titrating to a target SpO₂ (~94–98%, or 88–92% in COPD/CO₂ retainers) rather than maximal oxygen. Trial data (e.g. conservative-O₂ studies) are mixed but support avoiding sustained hyperoxia.",
+ src:[{t:"BTS oxygen guideline; ICU-ROX, NEJM 2020"}]},
+
+{s:"pulm",st:"rct",
+ r:"BiPAP (NIV) for COPD exacerbation with hypercapnic respiratory failure",
+ c:"COPD exacerbation, pH <7.35 with hypercapnia",
+ e:"Non-invasive ventilation reduces intubation, mortality, and length of stay in acute hypercapnic respiratory failure from COPD — a strong, well-replicated benefit. Start early in appropriate (awake, protecting airway) patients and monitor closely for failure.",
+ src:[{t:"Cochrane / GOLD — NIV in COPD"}]},
+
+{s:"pulm",st:"rct",
+ r:"Intrapleural tPA + DNase for complicated parapneumonic effusion / empyema",
+ c:"Loculated infected pleural effusion not draining with a chest tube",
+ e:"The MIST2 trial showed combined intrapleural tPA plus DNase improved drainage and reduced surgical referral and length of stay; neither agent alone was effective. Frank empyema and complicated effusions need source control — drainage plus antibiotics, with surgery if it fails.",
+ src:[{t:"MIST2, NEJM 2011"}]},
+
+{s:"pulm",st:"rct",
+ r:"High-flow nasal oxygen for acute hypoxemic respiratory failure",
+ c:"Non-hypercapnic acute hypoxemic respiratory failure",
+ e:"In the FLORALI trial, high-flow nasal cannula improved outcomes (including 90-day mortality in a subgroup) versus standard oxygen or NIV in non-hypercapnic hypoxemic failure. It improves comfort and oxygenation; monitor with the ROX index for impending failure and don't delay needed intubation.",
+ src:[{t:"FLORALI, NEJM 2015"}]},
+
+{s:"pulm",st:"guideline",
+ r:"Pharmacologic VTE prophylaxis for at-risk hospitalized medical patients (risk-stratify, e.g. Padua)",
+ c:"General medical inpatient VTE prevention",
+ e:"Most acutely ill medical inpatients benefit from LMWH or low-dose heparin prophylaxis; use a validated score (Padua) to identify higher-risk patients and weigh bleeding risk (IMPROVE). Avoid routine extended post-discharge prophylaxis outside specific indications.",
+ src:[{t:"ASH 2018 VTE prophylaxis guideline"}]},
+
+/* ===================== OB / GYN ===================== */
+{s:"obgyn",st:"rct",
+ r:"Magnesium sulfate for seizure prophylaxis in severe preeclampsia and for treating eclampsia",
+ c:"Severe preeclampsia / eclampsia",
+ e:"The Magpie trial showed MgSO₄ roughly halved the risk of eclampsia (58% reduction) versus placebo. For active seizures, the Collaborative Eclampsia Trial showed magnesium is superior to diazepam or phenytoin for preventing recurrence. Magnesium — not a traditional antiepileptic — is the agent of choice here.",
+ src:[{t:"Magpie, Lancet 2002",u:"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(02)08778-0/abstract"},{t:"Collaborative Eclampsia Trial, Lancet 1995"}]},
+
+{s:"obgyn",st:"guideline",
+ r:"Treat severe-range BP in pregnancy (≥160/110) urgently within 30–60 min: IV labetalol, IV hydralazine, or oral nifedipine",
+ c:"Severe hypertension in pregnancy/postpartum",
+ e:"ACOG considers persistent severe-range BP (SBP ≥160 or DBP ≥110) a hypertensive emergency requiring treatment within 30–60 minutes to prevent maternal stroke. All three first-line agents are acceptable; choice depends on availability and IV access. This is time-critical.",
+ src:[{t:"ACOG Practice Advisory — severe hypertension"}]},
+
+{s:"obgyn",st:"rct",
+ r:"Antenatal corticosteroids (betamethasone) for anticipated preterm birth, 24–36⁶/⁷ weeks",
+ c:"Threatened preterm delivery within 7 days",
+ e:"Antenatal steroids reduce neonatal respiratory distress, IVH, NEC, and death — one of the highest-value obstetric interventions. The ALPS trial extended benefit to the late-preterm window (34 0/7–36 6/7 weeks), reducing respiratory morbidity. A single course is standard; rescue courses are selective.",
+ src:[{t:"ALPS, NEJM 2016"},{t:"ACOG / Cochrane (antenatal steroids)"}]},
+
+{s:"obgyn",st:"rct",
+ r:"Magnesium sulfate for fetal neuroprotection before delivery <32 weeks",
+ c:"Anticipated very preterm birth",
+ e:"MgSO₄ given to women at risk of imminent very preterm birth reduces cerebral palsy and gross motor dysfunction in the child (BEAM and pooled meta-analyses). This is a distinct indication from seizure prophylaxis, though the drug is the same — give for neuroprotection even without preeclampsia.",
+ src:[{t:"BEAM, NEJM 2008"},{t:"Cochrane Mg neuroprotection meta-analysis"}]},
+
+{s:"obgyn",st:"rct",
+ r:"Tranexamic acid 1 g IV within 3 hours for postpartum hemorrhage",
+ c:"Postpartum hemorrhage, vaginal or cesarean",
+ e:"The WOMAN trial showed TXA reduces death due to bleeding in PPH, with no increase in thromboembolic events — and the benefit is greater the earlier it's given (within 3 hours). It is an adjunct to, not a replacement for, uterotonics and mechanical/surgical control.",
+ src:[{t:"WOMAN trial, Lancet 2017",u:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2864262/"}]},
+
+{s:"obgyn",st:"guideline",
+ r:"Oxytocin first-line for PPH; escalate to methylergonovine, carboprost, or misoprostol",
+ c:"Uterine atony / postpartum hemorrhage",
+ e:"Oxytocin is the first-line uterotonic for both prevention (active third-stage management) and treatment. Second-line agents have key cautions: methylergonovine is contraindicated in hypertension/preeclampsia, and carboprost (15-methyl PGF2α) in asthma. Combine with fundal massage and identify the cause (tone, trauma, tissue, thrombin).",
+ src:[{t:"ACOG PPH guidance / WHO"}]},
+
+{s:"obgyn",st:"guideline",
+ r:"Use LMWH (not warfarin or DOACs) for VTE prevention/treatment in pregnancy",
+ c:"VTE prophylaxis or treatment during pregnancy",
+ e:"Low-molecular-weight heparin is the anticoagulant of choice in pregnancy: it does not cross the placenta. Warfarin is teratogenic, and DOACs are not recommended due to insufficient safety data and placental transfer. Transition planning around delivery (neuraxial anesthesia timing) is important.",
+ src:[{t:"ACOG / RCOG VTE-in-pregnancy guidance"}]},
+
+{s:"obgyn",st:"guideline",
+ r:"Intrapartum penicillin for GBS-positive women (or unknown status with risk factors)",
+ c:"Group B Streptococcus colonization, labor",
+ e:"Intrapartum antibiotic prophylaxis (penicillin first-line) reduces early-onset neonatal GBS disease. Screen at 36–37 weeks; treat positives, and treat unknown status with risk factors (preterm, prolonged ROM, intrapartum fever). Use cefazolin or, for severe penicillin allergy, clindamycin only if susceptibility confirmed.",
+ src:[{t:"ACOG / CDC GBS guidance"}]},
+
+{s:"obgyn",st:"guideline",
+ r:"Tocolysis only to buy ~48 hours for steroids/transfer — not to prolong pregnancy long-term",
+ c:"Preterm labor",
+ e:"Tocolytics (nifedipine, indomethacin if <32 weeks) can delay delivery long enough to complete antenatal steroids and arrange maternal transfer, but they do not improve neonatal outcomes beyond that window. Avoid prolonged or combination tocolysis.",
+ src:[{t:"ACOG preterm labor guidance"}]},
+
+{s:"obgyn",st:"rct",
+ r:"Latency antibiotics (ampicillin + a macrolide) for preterm PROM",
+ c:"Preterm premature rupture of membranes, remote from term",
+ e:"In PPROM before term, antibiotics prolong latency and reduce neonatal morbidity (ORACLE I). Use ampicillin/amoxicillin plus erythromycin or azithromycin — and avoid amoxicillin-clavulanate, which was linked to increased neonatal necrotizing enterocolitis.",
+ src:[{t:"ORACLE I, Lancet 2001"},{t:"ACOG PPROM guidance"}]},
+
+{s:"obgyn",st:"expert",
+ r:"Monitor for magnesium toxicity; keep calcium gluconate available as the antidote",
+ c:"Patient on a magnesium infusion",
+ e:"Follow deep tendon reflexes, respiratory rate, urine output, and mental status (loss of reflexes is an early warning before respiratory depression). Reduce the dose in renal impairment. IV calcium gluconate reverses life-threatening toxicity. This monitoring is consensus-based practical care.",
+ src:[{t:"ACOG / nursing protocols"}]},
+
+{s:"obgyn",st:"guideline",
+ r:"Anti-D immunoglobulin (RhoGAM) for Rh-negative patients at 28 weeks and after sensitizing events",
+ c:"Rh(D)-negative pregnancy",
+ e:"Anti-D prevents alloimmunization that causes hemolytic disease of the fetus/newborn in future pregnancies. Give at ~28 weeks, within 72 hours postpartum if the infant is Rh-positive, and after any sensitizing event (bleeding, trauma, procedures, miscarriage).",
+ src:[{t:"ACOG Rh alloimmunization guidance"}]},
+
+{s:"obgyn",st:"guideline",
+ r:"Broad-spectrum antibiotics + delivery for intra-amniotic infection (chorioamnionitis)",
+ c:"Intrapartum chorioamnionitis",
+ e:"Treat with ampicillin + gentamicin (add clindamycin/metronidazole for cesarean anaerobic coverage) and proceed toward delivery — antibiotics plus delivery are the treatment. Give intrapartum acetaminophen for fever. Delay in delivery does not improve outcomes once infection is established.",
+ src:[{t:"ACOG intra-amniotic infection guidance"}]},
+
+{s:"obgyn",st:"guideline",
+ r:"Insulin (not oral agents) is preferred for inpatient glycemic control in pregnancy",
+ c:"Gestational or pregestational diabetes, inpatient",
+ e:"Insulin remains the preferred agent when pharmacotherapy is needed in pregnancy; it does not cross the placenta and allows tight titration. Maintain tighter glucose targets than non-pregnant adults. Around delivery, anticipate rapidly falling insulin requirements postpartum.",
+ src:[{t:"ACOG gestational diabetes guidance"}]},
+
+/* ===================== NEUROLOGY ===================== */
+{s:"neuro",st:"rct",
+ r:"IV thrombolysis (alteplase, or increasingly tenecteplase) for acute ischemic stroke within 4.5 h",
+ c:"Disabling acute ischemic stroke, eligible, within time window",
+ e:"NINDS established benefit within 3 hours and ECASS III extended the window to 4.5 hours for eligible patients. Tenecteplase (single bolus) is increasingly used and is at least non-inferior to alteplase (EXTEND-IA TNK). Earlier treatment yields better outcomes — 'time is brain' — and screen carefully for contraindications.",
+ src:[{t:"NINDS, NEJM 1995"},{t:"ECASS III, NEJM 2008"},{t:"AHA/ASA stroke guideline"}]},
+
+{s:"neuro",st:"rct",
+ r:"Mechanical thrombectomy for large-vessel occlusion — up to 24 h with imaging mismatch",
+ c:"Anterior-circulation LVO stroke",
+ e:"For LVO within 6 hours, multiple RCTs (e.g. MR CLEAN) established benefit. The window extends to 24 hours in selected patients with a clinical–core mismatch (DAWN, to 24 h) or perfusion mismatch (DEFUSE-3, to 16 h). Advanced imaging (CTP/MRI) selects late-window candidates.",
+ src:[{t:"DAWN, NEJM 2018"},{t:"DEFUSE-3, NEJM 2018"},{t:"MR CLEAN, NEJM 2015"}]},
+
+{s:"neuro",st:"guideline",
+ r:"Permissive hypertension in acute ischemic stroke — treat BP only if very high",
+ c:"Acute ischemic stroke, BP management",
+ e:"Don't aggressively lower BP in acute ischemic stroke; perfusion of the penumbra depends on it. Treat only if >220/120 (no thrombolysis) or keep <185/110 before and <180/105 after thrombolysis/thrombectomy. This is the mirror image of hemorrhagic stroke management.",
+ src:[{t:"AHA/ASA acute ischemic stroke guideline"}]},
+
+{s:"neuro",st:"rct",
+ r:"Short-course DAPT (aspirin + clopidogrel × 21 days) after minor stroke or high-risk TIA, started <24 h",
+ c:"Minor non-cardioembolic stroke (NIHSS ≤3) or high-risk TIA",
+ e:"CHANCE and POINT showed early dual antiplatelet therapy reduces recurrent stroke at 90 days. Because POINT's longer 90-day DAPT increased bleeding, practice converged on ~21 days of DAPT then single-agent therapy. Start within 24 hours of onset for non-cardioembolic events.",
+ src:[{t:"CHANCE, NEJM 2013"},{t:"POINT, NEJM 2018"}]},
+
+{s:"neuro",st:"rct",
+ r:"After benzodiazepines, any of levetiracetam, fosphenytoin, or valproate as second-line for status epilepticus",
+ c:"Benzodiazepine-refractory convulsive status epilepticus",
+ e:"The ESETT RCT directly compared all three and found them equivalent — each stopped seizures and improved consciousness by 60 minutes in roughly half of patients, with similar adverse events. Pick by patient factors and availability (levetiracetam 60 mg/kg is easy and interaction-light). Don't delay: escalate quickly if refractory.",
+ src:[{t:"ESETT, NEJM 2019",u:"https://www.nejm.org/doi/full/10.1056/NEJMoa1905795"}]},
+
+{s:"neuro",st:"rct",
+ r:"Empiric ceftriaxone + vancomycin (+ ampicillin if Listeria risk) and dexamethasone for bacterial meningitis — don't delay antibiotics",
+ c:"Suspected community-acquired bacterial meningitis",
+ e:"Give antibiotics emergently — do not wait for LP or CT. Add dexamethasone with or just before the first antibiotic dose; it improves outcomes (mortality, hearing) chiefly in pneumococcal meningitis (de Gans). Add ampicillin for Listeria coverage in age >50, immunocompromise, or pregnancy.",
+ src:[{t:"de Gans & van de Beek, NEJM 2002 (dexamethasone)"},{t:"IDSA meningitis guideline"}]},
+
+{s:"neuro",st:"rct",p:true,
+ r:"Treat Guillain–Barré with IVIG or plasma exchange — NOT corticosteroids",
+ c:"Guillain–Barré syndrome",
+ e:"IVIG and plasma exchange are equally effective and are the disease-modifying treatments; combining them adds no benefit. Corticosteroids are ineffective in GBS and a Cochrane review found no benefit (possible harm) — a classic teaching point, since steroids help many other neuro-inflammatory conditions. Monitor respiratory function (FVC/NIF) closely.",
+ src:[{t:"Cochrane — corticosteroids for GBS"},{t:"AAN GBS guidance"}]},
+
+{s:"neuro",st:"guideline",
+ r:"Myasthenic crisis: IVIG or plasma exchange + airway monitoring; be cautious starting high-dose steroids alone acutely",
+ c:"Myasthenia gravis with respiratory compromise",
+ e:"PLEX or IVIG are the rapid rescue therapies in crisis. Monitor FVC and negative inspiratory force and intubate before catastrophic failure (don't rely on ABG/SpO₂ alone). High-dose corticosteroids can cause transient worsening in the first 1–2 weeks, so they're typically introduced carefully alongside PLEX/IVIG.",
+ src:[{t:"AAN / MGFA guidance"}]},
+
+{s:"neuro",st:"guideline",
+ r:"High-dose corticosteroids for acute MS relapse; plasma exchange if steroid-refractory",
+ c:"Acute multiple sclerosis relapse with disability",
+ e:"High-dose IV or equivalent oral methylprednisolone speeds recovery from disabling relapses (oral and IV are comparable). Steroids shorten the relapse but don't change long-term disability. For severe steroid-refractory relapses, plasma exchange is an option.",
+ src:[{t:"AAN / ECTRIMS relapse guidance"}]},
+
+{s:"neuro",st:"guideline",p:true,
+ r:"Don't delay glucose to give thiamine 'first' — the strict sequence is a myth; give thiamine with or right after glucose",
+ c:"Hypoglycemia / Wernicke risk (alcohol use disorder, malnutrition)",
+ e:"The teaching that thiamine must precede glucose rests only on case reports — no single dextrose bolus has been shown to precipitate Wernicke, and you should never delay treating hypoglycemia. ASAM states the order doesn't matter; give them concurrently or in any sequence. The genuine risk is PROLONGED glucose/dextrose or TPN without thiamine in a deficient patient, so give thiamine alongside ongoing dextrose. Treat suspected Wernicke empirically with high-dose IV thiamine — the classic triad (ophthalmoplegia, ataxia, confusion) is often incomplete.",
+ src:[{t:"Glucose before thiamine: literature review, J Emerg Med 2012",u:"https://www.jem-journal.com/article/S0736-4679(11)00854-7/abstract"},{t:"ASAM / EFNS Wernicke guidance"}]},
+
+{s:"neuro",st:"rct",
+ r:"Anticoagulate cerebral venous sinus thrombosis — even when there's a venous hemorrhagic infarct",
+ c:"Cerebral venous sinus thrombosis",
+ e:"Heparin (then transition to oral anticoagulation) is recommended for CVST despite the presence of hemorrhagic venous infarction, because the bleeding is a consequence of venous congestion that anticoagulation relieves. This counterintuitive recommendation is supported by RCT and guideline consensus.",
+ src:[{t:"ISCVT / AHA-ASA CVST guidance"}]},
+
+{s:"neuro",st:"guideline",p:true,
+ r:"Do NOT use primary seizure prophylaxis after acute ischemic stroke",
+ c:"Acute ischemic stroke without seizures",
+ e:"Prophylactic antiseizure medication is not recommended after ischemic stroke in the absence of seizures — a frequent reflexive request that guidelines advise against. Treat seizures if and when they occur. (Same principle as spontaneous ICH.)",
+ src:[{t:"AHA/ASA stroke guideline"}]},
+
+{s:"neuro",st:"guideline",
+ r:"For symptomatic carotid stenosis, refer for endarterectomy/stenting early (within ~2 weeks)",
+ c:"Recent TIA/minor stroke with ipsilateral 50–99% carotid stenosis",
+ e:"Revascularization benefit (NASCET/ECST) is greatest when performed soon after the event — ideally within 2 weeks — because early recurrence risk is high. Continue antiplatelet and high-intensity statin therapy. Asymptomatic stenosis has a much lower benefit and is managed more conservatively.",
+ src:[{t:"NASCET / ECST; AHA-ASA secondary prevention"}]},
+
+{s:"neuro",st:"rct",
+ r:"Start high-intensity statin and structured secondary prevention after ischemic stroke/TIA",
+ c:"Ischemic stroke or TIA, secondary prevention",
+ e:"High-intensity statins reduce recurrent stroke (SPARCL); add antiplatelet therapy for non-cardioembolic events, and anticoagulation for atrial fibrillation. Aggressive risk-factor control (BP, glucose, smoking) compounds the benefit. Don't leave secondary prevention to the outpatient setting alone.",
+ src:[{t:"SPARCL, NEJM 2006"},{t:"AHA/ASA secondary prevention guideline"}]},
+
+{s:"neuro",st:"guideline",
+ r:"Generally do not start a long-term antiseizure drug after a single unprovoked seizure",
+ c:"First unprovoked seizure",
+ e:"After a first unprovoked seizure, the decision to treat depends on recurrence risk — abnormal EEG, structural lesion on imaging, or nocturnal seizure raise risk and may justify treatment. Many low-risk first seizures are observed rather than treated. Provoked seizures call for treating the cause, not chronic ASMs.",
+ src:[{t:"AAN/AES first seizure guideline"}]},
+
+/* ===================== INFECTIOUS DISEASE ===================== */
+{s:"id",st:"guideline",
+ r:"Empiric broad-spectrum antibiotics within 1 hour + source control for sepsis/septic shock — draw cultures first",
+ c:"Sepsis or septic shock",
+ e:"The Surviving Sepsis Campaign recommends antibiotics as soon as possible, ideally within 1 hour for septic shock, after obtaining blood cultures. Pair antibiotics with active source control (drain the abscess, remove the line, decompress the obstruction). Empiric breadth should reflect the suspected source and local resistance.",
+ src:[{t:"Surviving Sepsis Campaign guidelines"}]},
+
+{s:"id",st:"guideline",
+ r:"De-escalate and narrow antibiotics once cultures and susceptibilities return",
+ c:"Day 2–3 of empiric therapy",
+ e:"Stewardship reduces resistance, C. difficile, and toxicity without worsening outcomes. Narrow to the identified organism, stop redundant coverage (e.g. drop empiric vancomycin if no MRSA/Gram-positives), and set a stop date. 'Broad and forever' is a habit, not a strategy.",
+ src:[{t:"IDSA / CDC antimicrobial stewardship"}]},
+
+{s:"id",st:"guideline",p:true,
+ r:"Do NOT treat asymptomatic bacteriuria — except in pregnancy or before an invasive urologic procedure",
+ c:"Positive urine culture without urinary symptoms",
+ e:"The 2019 IDSA guideline recommends against screening for or treating asymptomatic bacteriuria in essentially everyone except pregnant women and patients undergoing invasive urologic procedures. Crucially, this holds even with delirium or a fall if there are no genitourinary symptoms, fever, or hemodynamic instability — treating drives resistance and C. diff with no benefit. One of the highest-yield stewardship teaching points.",
+ src:[{t:"IDSA Asymptomatic Bacteriuria Guideline 2019",u:"https://www.idsociety.org/practice-guideline/asymptomatic-bacteriuria/"}]},
+
+{s:"id",st:"rct",
+ r:"Shorter courses are usually enough: 7 days for uncomplicated Gram-negative bacteremia",
+ c:"Antibiotic duration decisions",
+ e:"For uncomplicated Enterobacterales bacteremia, 7 days is non-inferior to 14 (Yahav 2019; confirmed in the larger BALANCE trial). The broader 'shorter is better' movement also supports ~5 days for CAP and shorter courses for many infections in responding patients. Match duration to syndrome and response, not habit.",
+ src:[{t:"Yahav, Clin Infect Dis 2019"},{t:"BALANCE, NEJM 2024/25"}]},
+
+{s:"id",st:"guideline",
+ r:"Treat Staph aureus bacteremia seriously: never as a contaminant — repeat cultures, echo, and ID consult",
+ c:"Any positive blood culture for S. aureus",
+ e:"SAB carries high complication and mortality rates. Get repeat cultures to document clearance, an echocardiogram (often TEE) to exclude endocarditis, remove/exchange infected lines, and treat 14 days (uncomplicated) to 4–6 weeks (complicated). Infectious-disease consultation independently improves outcomes in SAB.",
+ src:[{t:"IDSA / SAB management evidence"}]},
+
+{s:"id",st:"guideline",
+ r:"Dose vancomycin to an AUC target (≈400–600), not by trough alone",
+ c:"Serious MRSA infection",
+ e:"The updated consensus guideline moved away from trough-only dosing (15–20) toward AUC/MIC-guided dosing (AUC 400–600), which achieves efficacy with less nephrotoxicity. Use a pharmacist/dosing service for AUC monitoring. Trough-only targeting overshoots and raises AKI risk.",
+ src:[{t:"ASHP/IDSA/SIDP vancomycin consensus 2020"}]},
+
+{s:"id",st:"guideline",
+ r:"Echinocandin first-line for candidemia; remove central lines and get a dilated eye exam",
+ c:"Candida in the blood",
+ e:"An echinocandin (e.g. micafungin) is preferred initial therapy over fluconazole for candidemia pending species/susceptibility. Remove or exchange central venous catheters, obtain follow-up cultures to document clearance, and arrange ophthalmologic exam to exclude endophthalmitis. Treat ~14 days from first negative culture in uncomplicated cases.",
+ src:[{t:"IDSA Candidiasis Guideline"}]},
+
+{s:"id",st:"guideline",
+ r:"Nonpurulent cellulitis: cover streptococci — don't reflexively add MRSA coverage",
+ c:"Skin and soft tissue infection",
+ e:"Nonpurulent cellulitis is usually streptococcal and treated with a beta-lactam (e.g. cephalexin); routine MRSA coverage isn't needed. Purulent infection (abscess) calls for incision and drainage — the key intervention — plus MRSA-active therapy if antibiotics are added. 'Add vancomycin to every cellulitis' is overtreatment.",
+ src:[{t:"IDSA SSTI Guideline"}]},
+
+{s:"id",st:"rct",p:true,
+ r:"Oral antibiotics can be non-inferior to IV for bone and joint infection",
+ c:"Osteomyelitis / native bone-joint infection after initial control",
+ e:"The OVIVA trial found that switching to oral antibiotics during the first 6 weeks was non-inferior to prolonged IV therapy for bone and joint infection, with fewer line complications. This challenges the reflex that osteomyelitis 'must' be 6 weeks of IV. Bioavailability, source control, and follow-up still matter — coordinate with ID.",
+ src:[{t:"OVIVA, NEJM 2019"}]},
+
+{s:"id",st:"rct",
+ r:"Selected stable left-sided endocarditis can step down to oral antibiotics after initial IV therapy",
+ c:"Stabilized infective endocarditis",
+ e:"The POET trial showed that, in carefully selected stabilized left-sided endocarditis, partial oral antibiotic treatment after an initial IV course was non-inferior to continued IV therapy. This is for stable patients meeting strict criteria — not a blanket license to go oral early. Decisions are made with cardiology/ID and surgical assessment.",
+ src:[{t:"POET, NEJM 2019"}]},
+
+{s:"id",st:"guideline",p:true,
+ r:"Delabel penicillin 'allergy' rather than defaulting to broad-spectrum alternatives",
+ c:"Patient with a documented penicillin allergy",
+ e:"Over 90% of patients labeled penicillin-allergic are not truly allergic, and the label drives use of broader, less effective, more toxic agents (more MRSA, C. diff, resistance, cost). Take a careful history; many low-risk patients can be delabeled or tested. The allergy label itself worsens outcomes.",
+ src:[{t:"AAAAI/ACAAI & IDSA penicillin allergy guidance"}]},
+
+{s:"id",st:"guideline",
+ r:"Oseltamivir for hospitalized or high-risk influenza — start empirically, don't wait on the swab",
+ c:"Suspected influenza, hospitalized or high-risk",
+ e:"Antivirals work best within 48 hours of onset, but hospitalized and high-risk patients benefit even when started later, so treat empirically during flu season rather than waiting for confirmation. Healthy outpatients with mild illness derive modest benefit. Don't withhold treatment from a sick inpatient pending the test.",
+ src:[{t:"IDSA / CDC influenza guidance"}]},
+
+{s:"id",st:"rct",
+ r:"Use procalcitonin to help STOP antibiotics — not to decide whether to start them in suspected sepsis",
+ c:"Antibiotic duration / stewardship adjunct",
+ e:"Procalcitonin-guided algorithms can safely shorten antibiotic courses (de-escalation), but procalcitonin should never delay or withhold empiric antibiotics when sepsis is suspected (ProACT showed no benefit on initiation decisions). It is a stewardship adjunct, not a rule-out test.",
+ src:[{t:"ProACT, NEJM 2018"}]},
+
+{s:"id",st:"guideline",
+ r:"For vertebral osteomyelitis/epidural abscess in a stable patient, get cultures before antibiotics",
+ c:"Suspected spinal infection, hemodynamically stable",
+ e:"Unless the patient is septic or neurologically deteriorating, holding antibiotics until blood cultures and image-guided biopsy are obtained markedly improves microbiologic yield and targeted therapy. Empiric antibiotics started prematurely often render cultures sterile and commit the patient to prolonged broad therapy.",
+ src:[{t:"IDSA Native Vertebral Osteomyelitis Guideline"}]},
+
+/* ===================== ENDOCRINOLOGY ===================== */
+{s:"endo",st:"guideline",
+ r:"DKA: IV fluids + insulin infusion + potassium repletion — hold insulin if K⁺ <3.3, and don't stop the drip until the anion gap closes",
+ c:"Diabetic ketoacidosis",
+ e:"Resuscitate with isotonic fluids, start an insulin infusion, and replace potassium aggressively (total-body depletion is the rule). If K⁺ is <3.3, give potassium before insulin to avoid life-threatening hypokalemia. Continue the insulin drip with dextrose until the anion gap normalizes, and overlap with subcutaneous insulin for 1–2 hours before stopping — closing glucose alone is not the endpoint.",
+ src:[{t:"ADA / consensus DKA management"}]},
+
+{s:"endo",st:"rct",p:true,
+ r:"Inpatient glucose: start insulin at persistent ≥180; target 140–180 in the critically ill and 100–180 in non-ICU patients — don't chase tight control (80–110)",
+ c:"Inpatient hyperglycemia (ICU and floor)",
+ e:"NICE-SUGAR showed tight control (81–108) increased severe hypoglycemia and mortality versus a liberal target, so normoglycemia isn't the goal. Per the ADA 2025–2026 Standards of Care, start insulin for persistent glucose ≥180; aim for 140–180 in critically ill patients, with a broader 100–180 range accepted for non-critically ill (floor) patients and perioperatively. Use scheduled insulin and prioritize avoiding hypoglycemia over hitting a low number.",
+ src:[{t:"NICE-SUGAR, NEJM 2009"},{t:"ADA Standards of Care 2026 (Diabetes Care in the Hospital)",u:"https://diabetesjournals.org/care/article/49/Supplement_1/S339/163925/16-Diabetes-Care-in-the-Hospital-Standards-of-Care"}]},
+
+{s:"endo",st:"rct",p:true,
+ r:"Use scheduled basal-bolus insulin, not sliding-scale insulin alone",
+ c:"Inpatient hyperglycemia management",
+ e:"Sliding-scale-only insulin chases highs reactively and produces worse control with more swings; the RABBIT-2 trial showed basal-bolus dosing improves glycemic control in non-ICU inpatients. Use a basal + nutritional + correction regimen. Standalone sliding scale remains common and is a quality target to fix.",
+ src:[{t:"RABBIT-2, Diabetes Care 2007"},{t:"ADA inpatient guidance"}]},
+
+{s:"endo",st:"guideline",
+ r:"Adrenal crisis: give hydrocortisone 100 mg IV immediately — don't delay for cortisol testing",
+ c:"Suspected acute adrenal insufficiency",
+ e:"Adrenal crisis is rapidly fatal and the diagnosis is clinical; give stress-dose hydrocortisone and IV fluids at once. You can draw a random cortisol/ACTH first if it doesn't delay treatment, but never withhold steroids awaiting results. Dexamethasone is an alternative if you must preserve a cosyntropin test.",
+ src:[{t:"Endocrine Society adrenal insufficiency guideline"}]},
+
+{s:"endo",st:"guideline",
+ r:"Thyroid storm: beta-blocker + thionamide first, then iodine ≥1 hour later, plus hydrocortisone",
+ c:"Thyroid storm",
+ e:"Order matters: give a thionamide (PTU or methimazole) to block synthesis BEFORE iodine, because iodine given first can fuel hormone production (Jod-Basedow). Add a beta-blocker (propranolol) for adrenergic symptoms and hydrocortisone (impairs T4→T3 conversion and covers relative adrenal insufficiency). Treat the precipitant.",
+ src:[{t:"ATA thyroid storm guidance"}]},
+
+{s:"endo",st:"expert",
+ r:"Myxedema coma: IV levothyroxine + empiric stress-dose steroids until adrenal insufficiency is excluded",
+ c:"Severe decompensated hypothyroidism",
+ e:"Treat with IV thyroid hormone (levothyroxine ± T3), supportive care (passive rewarming, ventilation, pressors), and give stress-dose hydrocortisone first/concurrently because coexisting adrenal insufficiency is common and thyroid hormone alone can precipitate crisis. Evidence is largely from case series given rarity.",
+ src:[{t:"ATA hypothyroidism guidance"}]},
+
+{s:"endo",st:"guideline",
+ r:"Correct chronic hyponatremia at ≤8 mEq/L/24 h in high-risk patients; 10–12 mEq/L/24 h is acceptable at average risk",
+ c:"Chronic hyponatremia",
+ e:"Cap the rise at about 8 mEq/L/24 h only in patients at high osmotic-demyelination risk — serum sodium ≤105, alcohol use disorder, malnutrition, hypokalemia, or advanced liver disease — while up to 10–12 mEq/L/24 h is the accepted ceiling for average-risk patients. Recheck sodium frequently and re-lower with free water ± DDAVP if overshooting. Recent large cohorts complicate the dogma: ODS is rare (~0.5%), occurs even without rapid correction (concentrated in high-risk patients), and overly cautious correction has been associated with higher mortality — so risk-stratify rather than applying ≤8 to everyone.",
+ src:[{t:"European/US hyponatremia guidelines (2014)"},{t:"Sodium correction & ODS meta-analysis, Kidney Med 2024",u:"https://www.kidneymedicinejournal.org/article/S2590-0595(24)00164-X/fulltext"}]},
+
+{s:"endo",st:"guideline",
+ r:"Severe symptomatic hyponatremia (seizures, coma): 3% hypertonic saline boluses",
+ c:"Acute symptomatic hyponatremia",
+ e:"For severe neurologic symptoms, give a 100–150 mL bolus of 3% saline (repeat as needed) to raise sodium ~4–6 mEq/L promptly — this reverses cerebral edema. Then revert to slow correction within the 24-hour limit. The bolus strategy treats the emergency without overcorrecting.",
+ src:[{t:"Hyponatremia management guidance"}]},
+
+{s:"endo",st:"guideline",
+ r:"Pheochromocytoma: establish alpha-blockade BEFORE any beta-blocker",
+ c:"Catecholamine-secreting tumor, perioperative or crisis",
+ e:"Giving a beta-blocker first leaves alpha-mediated vasoconstriction unopposed and can trigger hypertensive crisis. Block alpha first (e.g. phenoxybenzamine/doxazosin) with volume repletion, then add a beta-blocker for tachycardia. A classic 'order of operations' pitfall.",
+ src:[{t:"Endocrine Society pheochromocytoma guideline"}]},
+
+{s:"endo",st:"expert",p:true,
+ r:"Don't over-apply 'stress-dose' steroids — many chronic steroid patients need only their usual dose for minor procedures",
+ c:"Perioperative steroid coverage",
+ e:"High supraphysiologic stress dosing is frequently given reflexively, but evidence supports a graded approach: continue the usual daily dose for minor procedures and reserve higher coverage for major surgery or hemodynamic instability. Excess steroid causes hyperglycemia, poor wound healing, and infection.",
+ src:[{t:"Endocrine Society / perioperative steroid evidence"}]},
+
+{s:"endo",st:"expert",
+ r:"Severe hypoglycemia: IV dextrose (or glucagon if no access), then find and treat the cause",
+ c:"Hypoglycemia in the hospital",
+ e:"Treat promptly with D50 (or glucagon if no IV), recheck, and address the cause. Sulfonylurea-induced hypoglycemia is prolonged and recurrent — admit, give continuous dextrose, and consider octreotide to suppress insulin secretion. Don't discharge a sulfonylurea hypoglycemia after a single correction.",
+ src:[{t:"Endocrine / toxicology guidance"}]},
+
+{s:"endo",st:"expert",
+ r:"Match insulin to the steroid: cover steroid-induced hyperglycemia per the steroid's time course",
+ c:"Glucocorticoid-induced hyperglycemia",
+ e:"Steroids cause predominantly postprandial and afternoon/evening hyperglycemia. Dosing strategy should mirror the steroid's pharmacokinetics — e.g. adding NPH with once-daily morning prednisone, or escalating basal-bolus with sustained steroids. Anticipate falling insulin needs as steroids taper.",
+ src:[{t:"ADA inpatient hyperglycemia guidance"}]},
+
+{s:"endo",st:"guideline",
+ r:"SIADH: fluid restriction first; correct slowly and treat the underlying cause",
+ c:"Euvolemic hyponatremia from SIADH",
+ e:"First-line is fluid restriction (± salt/urea); loop diuretics or hypertonic saline for more significant cases, with the same slow-correction caution. Identify and treat the driver (medications, pulmonary/CNS disease, malignancy). Reserve vaptans for selected refractory cases given cost and overcorrection risk.",
+ src:[{t:"SIADH management guidance"}]},
+
+{s:"endo",st:"guideline",
+ r:"HHS: fluids first and largest, then insulin; correct osmolality gradually",
+ c:"Hyperosmolar hyperglycemic state",
+ e:"Fluid deficits are larger than in DKA — aggressive isotonic resuscitation is the priority and partly lowers glucose on its own before/alongside an insulin infusion. Correct glucose and osmolality gradually to avoid cerebral edema, and replace potassium. Mortality is higher than DKA, often driven by the precipitating illness.",
+ src:[{t:"ADA hyperglycemic crises guidance"}]},
+
+/* ===================== NEPHROLOGY ===================== */
+{s:"nephro",st:"guideline",
+ r:"AKI management is supportive: optimize perfusion/volume, stop nephrotoxins — no drug reverses established AKI",
+ c:"Acute kidney injury work-up",
+ e:"There is no pharmacologic cure for established AKI. Identify and treat the cause (pre-renal, intrinsic, obstructive), restore renal perfusion, remove nephrotoxins (NSAIDs, aminoglycosides, contrast as feasible), and renally dose all drugs. 'Renal-dose dopamine' does not work and should not be used.",
+ src:[{t:"KDIGO AKI guideline"}]},
+
+{s:"nephro",st:"rct",p:true,
+ r:"Don't start dialysis early without an indication — accelerated RRT gives no survival benefit",
+ c:"Severe AKI without urgent indication",
+ e:"STARRT-AKI found an accelerated RRT strategy did not lower mortality and left more patients dialysis-dependent at 90 days with more adverse events; AKIKI showed many patients recover without ever needing RRT. Wait for a true indication rather than starting reflexively on a rising creatinine.",
+ src:[{t:"STARRT-AKI, NEJM 2020",u:"https://www.nejm.org/doi/full/10.1056/NEJMoa2000741"},{t:"AKIKI, NEJM 2016"}]},
+
+{s:"nephro",st:"guideline",
+ r:"Urgent dialysis indications — remember AEIOU",
+ c:"Deciding on emergent RRT",
+ e:"Initiate RRT for refractory Acidosis, Electrolyte derangement (notably hyperkalemia), Intoxications (dialyzable: e.g. toxic alcohols, lithium, salicylates), fluid Overload refractory to diuretics, and Uremic complications (pericarditis, encephalopathy, bleeding). Absent these, timing can be individualized.",
+ src:[{t:"KDIGO RRT guidance"}]},
+
+{s:"nephro",st:"guideline",
+ r:"Hyperkalemia sequence: stabilize (IV calcium) → shift (insulin/glucose, albuterol) → remove (diuretics, dialysis, binders)",
+ c:"Acute hyperkalemia with ECG changes",
+ e:"Give IV calcium gluconate/chloride immediately to stabilize the myocardium (it doesn't lower K⁺). Then shift potassium intracellularly with insulin + glucose and nebulized albuterol. Definitive removal needs diuretics, GI cation exchangers, or dialysis. Recheck glucose after insulin to avoid hypoglycemia.",
+ src:[{t:"Hyperkalemia management consensus"}]},
+
+{s:"nephro",st:"expert",p:true,
+ r:"Don't rely on sodium polystyrene (kayexalate) for acute hyperkalemia",
+ c:"Lowering potassium",
+ e:"SPS has slow, unreliable onset and weak evidence for acute lowering, plus rare bowel necrosis risk — it is not a treatment for an emergency. Use the stabilize/shift/remove approach acutely; newer binders (patiromer, sodium zirconium cyclosilicate) are better tolerated for subacute and chronic control.",
+ src:[{t:"Potassium-binder evidence reviews"}]},
+
+{s:"nephro",st:"rct",p:true,
+ r:"Contrast-associated AKI risk is overstated; IV isotonic fluid is the only prophylaxis — NAC and bicarbonate don't help",
+ c:"Iodinated contrast in CKD",
+ e:"The large PRESERVE trial found neither IV sodium bicarbonate (vs saline) nor oral N-acetylcysteine (vs placebo) prevented contrast-associated kidney injury or its outcomes. Modern data also suggest the attributable risk of contrast is smaller than historically feared. Give IV isotonic fluids to higher-risk patients; skip NAC.",
+ src:[{t:"PRESERVE, NEJM 2018"}]},
+
+{s:"nephro",st:"guideline",
+ r:"Don't withhold a clinically necessary contrast CT in moderate eGFR purely for 'renal protection'",
+ c:"Imaging decision in CKD",
+ e:"For most patients (especially eGFR ≥30), the diagnostic value of needed contrast imaging outweighs a small, often overstated AKI risk; delaying or refusing a needed study can cause real harm. Hydrate higher-risk patients and proceed. Weigh risk with radiology rather than reflexively cancelling.",
+ src:[{t:"ACR–NKF consensus on contrast media"}]},
+
+{s:"nephro",st:"guideline",p:true,
+ r:"Loop diuretics treat volume overload — they don't prevent or reverse AKI or improve survival",
+ c:"Oliguric AKI with or without overload",
+ e:"Diuretics are appropriate for fluid overload but do not improve renal recovery or mortality, and forcing an oliguric patient to make urine ('converting' to non-oliguric) is not a therapeutic goal. Using escalating diuretics to chase urine output can delay needed RRT. Treat congestion, not the number.",
+ src:[{t:"KDIGO AKI guideline"}]},
+
+{s:"nephro",st:"rct",
+ r:"Consider IV sodium bicarbonate for severe metabolic acidemia (pH <7.2) with AKI",
+ c:"Severe metabolic acidosis in the critically ill",
+ e:"The BICAR-ICU trial found no overall benefit, but a prespecified subgroup with AKI (AKIN 2–3) had reduced mortality and less need for RRT with bicarbonate therapy targeting pH ≥7.3. It is a reasonable adjunct in severe acidemia with AKI — not routine for milder acidosis.",
+ src:[{t:"BICAR-ICU, Lancet 2018"}]},
+
+{s:"nephro",st:"expert",
+ r:"Rhabdomyolysis: aggressive isotonic IV fluids; bicarbonate and mannitol are not proven",
+ c:"Rhabdomyolysis with elevated CK",
+ e:"Early, generous isotonic crystalloid to maintain urine output is the mainstay to prevent pigment nephropathy. Urine alkalinization with bicarbonate and forced mannitol diuresis are widely used but lack strong evidence and add risk. Monitor potassium, calcium, and phosphate closely.",
+ src:[{t:"Rhabdomyolysis management reviews"}]},
+
+{s:"nephro",st:"rct",
+ r:"Add an SGLT2 inhibitor (and ACEi/ARB) to slow progression of proteinuric CKD",
+ c:"Chronic kidney disease, inpatient optimization",
+ e:"SGLT2 inhibitors reduce CKD progression and cardiovascular events across diabetic and non-diabetic proteinuric CKD (DAPA-CKD, EMPA-KIDNEY). Combine with a renin-angiotensin blocker titrated for proteinuria. An expected small initial creatinine bump is not a reason to stop these agents.",
+ src:[{t:"DAPA-CKD, NEJM 2020"},{t:"EMPA-KIDNEY, NEJM 2023"}]},
+
+{s:"nephro",st:"rct",
+ r:"Oral sodium bicarbonate for chronic metabolic acidosis may slow CKD progression",
+ c:"CKD with serum bicarbonate <22",
+ e:"Correcting chronic metabolic acidosis with oral alkali (or base-rich diet) has been associated with slower decline in kidney function in CKD, though trial quality is mixed and newer data are less definitive. Target a normal-low serum bicarbonate while watching for sodium/volume load.",
+ src:[{t:"CKD metabolic acidosis trials (e.g. de Brito-Ashurst)"}]},
+
+{s:"nephro",st:"guideline",
+ r:"Hold metformin around AKI and iodinated contrast in low eGFR",
+ c:"Diabetic patient with AKI or contrast exposure",
+ e:"Metformin is renally cleared and accumulates in renal failure, raising the (rare but serious) risk of lactic acidosis. Hold it during AKI, and around contrast when eGFR is <30 (or with AKI risk), resuming once renal function is confirmed stable. This is about clearance, not direct nephrotoxicity.",
+ src:[{t:"FDA / ACR metformin-contrast guidance"}]},
+
+{s:"nephro",st:"rct",
+ r:"Diuretic resistance in cardiorenal syndrome: escalate dose and use sequential nephron blockade",
+ c:"Refractory volume overload",
+ e:"For loop-diuretic resistance, higher doses and sequential nephron blockade (adding a thiazide like metolazone) are more effective than persisting with a low dose. The DOSE trial found bolus and continuous-infusion loop strategies were broadly comparable, so dose adequacy matters more than the route. Monitor electrolytes and renal function.",
+ src:[{t:"DOSE, NEJM 2011"}]},
+
+/* ===================== GENERAL SURGERY ===================== */
+{s:"surg",st:"rct",
+ r:"Acute uncomplicated appendicitis: antibiotics are an accepted first-line alternative to appendectomy",
+ c:"Imaging-confirmed uncomplicated appendicitis",
+ e:"The large CODA trial showed antibiotics were non-inferior to appendectomy for short-term health status, and roughly half of antibiotic-treated patients avoided surgery at 4 years. An appendicolith predicts higher antibiotic failure. The right choice depends on patient values and risk — surgery is no longer the only acceptable answer.",
+ src:[{t:"CODA, NEJM 2020",u:"https://www.nejm.org/doi/full/10.1056/NEJMoa2014320"}]},
+
+{s:"surg",st:"rct",p:true,
+ r:"Uncomplicated diverticulitis often does NOT need antibiotics",
+ c:"CT-confirmed acute uncomplicated (Hinchey 0–Ia) diverticulitis",
+ e:"The AVOD and DIABOLO RCTs found that omitting antibiotics in selected uncomplicated diverticulitis did not worsen recovery, complications, or recurrence. Antibiotics remain indicated for complicated disease, immunosuppression, sepsis, or significant comorbidity. Reflexive antibiotics for every diverticulitis is increasingly questioned.",
+ src:[{t:"AVOD, Br J Surg 2012"},{t:"DIABOLO, Br J Surg 2017"}]},
+
+{s:"surg",st:"guideline",
+ r:"Small bowel obstruction: NG decompression + fluids, with a nonoperative trial for adhesive partial SBO",
+ c:"Adhesive small bowel obstruction",
+ e:"Most partial adhesive SBOs resolve with bowel rest, nasogastric decompression, and resuscitation; a water-soluble contrast study can be both prognostic and therapeutic. Operate urgently for complete obstruction, signs of ischemia/strangulation, closed-loop obstruction, or failure to resolve. Don't let a strangulating obstruction linger.",
+ src:[{t:"EAST / WSES SBO guidelines"}]},
+
+{s:"surg",st:"rct",
+ r:"Acute cholecystitis: early laparoscopic cholecystectomy beats delayed/interval surgery",
+ c:"Acute calculous cholecystitis",
+ e:"Early cholecystectomy (within ~72 hours to 7 days) shortens total hospital stay and reduces morbidity compared with delayed surgery (ACDC trial), without higher complication rates. Percutaneous cholecystostomy is reserved for poor operative candidates.",
+ src:[{t:"ACDC, Ann Surg 2013"}]},
+
+{s:"surg",st:"guideline",p:true,
+ r:"Surgical prophylaxis: give within 60 min of incision and STOP within 24 h — don't continue postop antibiotics",
+ c:"Perioperative antibiotic prophylaxis",
+ e:"Prophylaxis timed to incision (and redosed for long or high-blood-loss cases) prevents surgical-site infection; continuing antibiotics beyond 24 hours does NOT further reduce SSI and drives resistance, C. diff, and AKI. Prolonged postoperative 'just in case' antibiotics are a common, low-value habit.",
+ src:[{t:"ASHP/IDSA/SIS surgical prophylaxis guideline"}]},
+
+{s:"surg",st:"rct",
+ r:"Colorectal surgery: mechanical bowel prep PLUS oral antibiotics reduces surgical-site infection",
+ c:"Elective colorectal resection",
+ e:"Combined oral antibiotic and mechanical bowel preparation lowers SSI and anastomotic complications compared with mechanical prep alone or no prep, supported by large database and trial data. This combination is now standard in many enhanced-recovery pathways.",
+ src:[{t:"ACS/ASCRS colorectal SSI evidence"}]},
+
+{s:"surg",st:"rct",p:true,
+ r:"Don't START a beta-blocker de novo right before noncardiac surgery",
+ c:"Perioperative cardiac risk reduction",
+ e:"The POISE trial showed that initiating metoprolol perioperatively reduced myocardial infarction but increased stroke and overall mortality. Continue chronic beta-blockers, but do not start them acutely just before surgery for risk reduction. A frequently requested order that the evidence opposes.",
+ src:[{t:"POISE, Lancet 2008"}]},
+
+{s:"surg",st:"rct",
+ r:"Trauma massive transfusion: use a balanced 1:1:1 ratio (plasma:platelets:RBC)",
+ c:"Major hemorrhage / massive transfusion protocol",
+ e:"PROPPR compared 1:1:1 to 1:1:2 and found no difference in 24-hour or 30-day mortality, but the 1:1:1 group achieved hemostasis more often and had fewer deaths from exsanguination. Balanced resuscitation (with TXA and minimal crystalloid) is the standard approach to traumatic hemorrhage.",
+ src:[{t:"PROPPR, JAMA 2015"}]},
+
+{s:"surg",st:"rct",
+ r:"Give tranexamic acid early and use permissive hypotension in hemorrhagic trauma",
+ c:"Bleeding trauma patient",
+ e:"CRASH-2 showed TXA within 3 hours reduces death from bleeding in trauma (and is harmful if given late). Pair with permissive hypotension (limited crystalloid, tolerate lower BP) until surgical or angiographic source control, except in TBI where adequate cerebral perfusion is needed.",
+ src:[{t:"CRASH-2, Lancet 2010"}]},
+
+{s:"surg",st:"guideline",
+ r:"Necrotizing soft-tissue infection: emergent surgical debridement is the treatment — don't wait on imaging",
+ c:"Suspected necrotizing fasciitis",
+ e:"Survival depends on early, aggressive surgical exploration and debridement; antibiotics and imaging are adjuncts and must not delay the OR. Add broad-spectrum coverage plus clindamycin (toxin suppression) and IVIG in selected toxic shock. A normal CT does not exclude it — operate on clinical suspicion.",
+ src:[{t:"IDSA SSTI / surgical guidance"}]},
+
+{s:"surg",st:"guideline",p:true,
+ r:"Stress-ulcer prophylaxis only for high-risk ICU patients — not routine ward patients",
+ c:"GI bleed prophylaxis decisions",
+ e:"Acid-suppression prophylaxis benefits ICU patients with major risk factors (mechanical ventilation, coagulopathy, shock), but routine PPI/H2 prophylaxis for low-risk or floor patients adds little and carries risk (pneumonia, C. diff). Reassess and deprescribe when risk factors resolve.",
+ src:[{t:"ASHP / critical care SUP guidance; PEPTIC trial"}]},
+
+{s:"surg",st:"rct",
+ r:"Enhanced Recovery After Surgery (ERAS): early feeding, opioid-sparing analgesia, early mobilization",
+ c:"Perioperative care pathway",
+ e:"ERAS bundles — carbohydrate loading, multimodal/regional analgesia minimizing opioids, early enteral nutrition, early mobilization, and avoiding routine drains/NG tubes — reduce complications and length of stay across surgical specialties. Prolonged NPO and routine NG tubes after bowel surgery are no longer standard.",
+ src:[{t:"ERAS Society guidelines"}]},
+
+{s:"surg",st:"guideline",
+ r:"Acute mesenteric ischemia: high suspicion + urgent CT angiography + emergent revascularization",
+ c:"Severe abdominal pain out of proportion to exam",
+ e:"Mesenteric ischemia is a time-critical diagnosis where pain is classically out of proportion to a benign-appearing exam; CT angiography is the test of choice, and revascularization (endovascular or surgical) plus bowel assessment must be emergent. A rising lactate is a late, ominous sign — don't wait for it.",
+ src:[{t:"WSES mesenteric ischemia guidelines"}]},
+
+{s:"surg",st:"guideline",
+ r:"Postoperative VTE prophylaxis: mechanical + pharmacologic, stratified by risk (e.g. Caprini)",
+ c:"Perioperative thromboprophylaxis",
+ e:"Most surgical inpatients warrant prophylaxis tailored to risk: mechanical (IPC) for the highest bleeding risk, adding LMWH/heparin when bleeding risk allows. High-risk cancer and major orthopedic/abdominopelvic cases may need extended post-discharge prophylaxis. Balance against the specific procedure's bleeding risk.",
+ src:[{t:"ACCP / ASH surgical VTE prophylaxis"}]},
+
+/* ===================== OTOLARYNGOLOGY (ENT) ===================== */
+{s:"ent",st:"guideline",
+ r:"Epistaxis: sustained firm pressure on the lower (cartilaginous) nose + topical vasoconstrictor first",
+ c:"Anterior epistaxis",
+ e:"Most bleeds are anterior (Kiesselbach) and stop with 10–15 minutes of continuous pressure pinching the soft part of the nose, leaning forward, plus a topical vasoconstrictor (oxymetazoline). Escalate to cautery or anterior packing if needed. Suspect a posterior bleed when bleeding is brisk, bilateral, or pressure fails — those may need posterior packing and admission.",
+ src:[{t:"AAO-HNS Nosebleed (Epistaxis) Guideline"}]},
+
+{s:"ent",st:"rct",
+ r:"Bell's palsy: start oral corticosteroids within 72 hours",
+ c:"Acute idiopathic facial paralysis",
+ e:"The Sullivan RCT showed early prednisolone significantly increased complete recovery at 9 months, while acyclovir alone provided no benefit (antivirals are sometimes added for severe cases). Crucially, protect the eye (lubrication, taping) on the affected side. Earlier steroid initiation yields better recovery.",
+ src:[{t:"Sullivan, NEJM 2007",u:"https://www.nejm.org/doi/full/10.1056/NEJMoa072006"},{t:"AAO-HNS Bell's Palsy Guideline"}]},
+
+{s:"ent",st:"guideline",
+ r:"Sudden sensorineural hearing loss is an emergency — high-dose steroids ASAP + urgent audiogram + MRI",
+ c:"Acute unilateral hearing loss over <72 hours",
+ e:"Distinguish true SSNHL from conductive loss/cerumen with an audiogram, then give high-dose oral corticosteroids as early as possible (benefit drops after ~2 weeks); intratympanic steroids are an option for initial or salvage therapy. Obtain MRI to exclude a retrocochlear lesion (e.g. vestibular schwannoma). Often misdiagnosed as otitis media — don't miss it.",
+ src:[{t:"AAO-HNS Sudden Hearing Loss Guideline 2019",u:"https://aao-hnsfjournals.onlinelibrary.wiley.com/doi/10.1177/0194599819859885"}]},
+
+{s:"ent",st:"guideline",p:true,
+ r:"Acute otitis media: amoxicillin first-line — but watchful waiting is appropriate for many nonsevere cases",
+ c:"Acute otitis media",
+ e:"High-dose amoxicillin is first-line when antibiotics are indicated (amox-clav if recent antibiotics/failure). For nonsevere AOM in older children, an observation option with delayed prescribing is endorsed by the AAP, since many cases are viral or self-resolving. Reflexive antibiotics for every red eardrum is overtreatment.",
+ src:[{t:"AAP Acute Otitis Media Guideline"}]},
+
+{s:"ent",st:"guideline",p:true,
+ r:"Acute rhinosinusitis: most is viral — reserve antibiotics for severe, persistent, or 'double-worsening' disease",
+ c:"Acute sinusitis",
+ e:"Viral rhinosinusitis dominates; antibiotics are reasonable only for symptoms >10 days without improvement, severe presentation (high fever + purulence ≥3–4 days), or worsening after initial improvement. When indicated, amoxicillin-clavulanate is first-line. Immediate antibiotics for every 'sinus infection' is low-value.",
+ src:[{t:"IDSA / AAO-HNS rhinosinusitis guidance"}]},
+
+{s:"ent",st:"guideline",
+ r:"Peritonsillar abscess: drain (needle aspiration or I&D) plus antibiotics",
+ c:"Peritonsillar abscess",
+ e:"Drainage is the key intervention, combined with antibiotics covering streptococci and oral anaerobes; corticosteroids reduce pain and trismus. Watch for airway compromise and ensure adequate oral intake. Antibiotics alone, without drainage of a true abscess, often fail.",
+ src:[{t:"AAO-HNS / ID guidance"}]},
+
+{s:"ent",st:"expert",
+ r:"Epiglottitis/supraglottitis: secure the airway first — keep the patient calm and upright, don't examine the throat",
+ c:"Suspected acute epiglottitis",
+ e:"The priority is airway control in a controlled setting (often OR with ENT/anesthesia); agitating the patient or instrumenting the oropharynx can precipitate complete obstruction. Give IV antibiotics and steroids after the airway is addressed. Imaging only if the airway is stable and diagnosis uncertain.",
+ src:[{t:"Airway management consensus"}]},
+
+{s:"ent",st:"guideline",
+ r:"Ludwig's angina / deep neck space infection: airway first, broad-spectrum IV antibiotics, surgical drainage",
+ c:"Submandibular / deep neck infection",
+ e:"Deep neck infections threaten the airway and can spread to the mediastinum. Prioritize airway assessment and early control, start broad-spectrum antibiotics covering oral flora/anaerobes, and obtain contrast CT to define drainable collections for surgical drainage. Don't underestimate rapid progression.",
+ src:[{t:"ENT / ID deep neck infection guidance"}]},
+
+{s:"ent",st:"rct",p:true,
+ r:"BPPV: treat with canalith repositioning (Epley) — not long-term vestibular suppressants",
+ c:"Benign paroxysmal positional vertigo",
+ e:"Positional vertigo confirmed by Dix-Hallpike is treated with the Epley/canalith repositioning maneuver, which is highly effective. Meclizine and other vestibular suppressants don't correct BPPV and, used chronically, impair central compensation. Reaching for meclizine as the fix is a common misstep.",
+ src:[{t:"AAO-HNS BPPV Guideline"}]},
+
+{s:"ent",st:"rct",
+ r:"Vestibular neuritis: a short corticosteroid course may speed recovery; emphasize vestibular rehab",
+ c:"Acute vestibular neuritis",
+ e:"For acute peripheral vestibular failure, a brief steroid course can improve vestibular recovery in some trials (evidence is mixed), and early vestibular rehabilitation aids central compensation. Limit vestibular suppressants to the first few days for severe symptoms. First, exclude a central (stroke) cause with HINTS exam in at-risk patients.",
+ src:[{t:"Vestibular neuritis trial evidence"}]},
+
+{s:"ent",st:"guideline",
+ r:"Esophageal foreign body or button battery: emergent endoscopic removal",
+ c:"Ingested foreign body, especially a disc battery",
+ e:"A lodged button battery causes caustic mucosal injury within hours and is a true emergency requiring immediate removal; sharp objects and food impaction with complete obstruction also need urgent endoscopy. Honey may be given pre-removal for battery ingestion in select cases. Don't 'observe' a esophageal battery.",
+ src:[{t:"NASPGHAN / ENT foreign body guidance"}]},
+
+{s:"ent",st:"guideline",
+ r:"Necrotizing (malignant) otitis externa: prolonged systemic antipseudomonal therapy + imaging",
+ c:"Severe otitis externa in a diabetic/immunocompromised patient",
+ e:"Suspect skull-base osteomyelitis when an elderly diabetic or immunocompromised patient has severe, persistent ear pain, drainage, and granulation tissue at the canal floor; Pseudomonas is the usual culprit. Treat with prolonged systemic antipseudomonal antibiotics (not just drops) and obtain imaging (CT/MRI ± nuclear) with ENT involvement.",
+ src:[{t:"ENT / ID necrotizing otitis externa guidance"}]},
+
+{s:"ent",st:"guideline",
+ r:"Uncomplicated otitis externa (swimmer's ear): topical drops, not systemic antibiotics",
+ c:"Acute diffuse otitis externa",
+ e:"Topical antibiotic ± steroid drops are first-line and outperform systemic antibiotics for uncomplicated otitis externa; keep the ear dry and control pain. Systemic antibiotics are reserved for extension beyond the canal or immunocompromise. Add a wick if the canal is too swollen for drops to penetrate.",
+ src:[{t:"AAO-HNS Acute Otitis Externa Guideline"}]},
+
+{s:"ent",st:"expert",
+ r:"Post-tonsillectomy hemorrhage is an airway/bleeding emergency — secure airway, resuscitate, return to OR",
+ c:"Bleeding after tonsillectomy",
+ e:"Primary hemorrhage occurs within 24 hours; secondary bleeding classically at 5–10 days as the eschar sloughs. Even a small herald bleed can precede catastrophic hemorrhage, so it warrants urgent ENT evaluation; prepare for airway protection, IV access/resuscitation, and operative control. Don't dismiss reported spitting of blood.",
+ src:[{t:"ENT perioperative care guidance"}]},
+
+/* ===================== CARDIOLOGY ===================== */
+{s:"cardio",st:"guideline",
+ r:"STEMI: primary PCI as fast as possible (door-to-balloon <90 min); fibrinolysis if PCI isn't available within 120 min",
+ c:"ST-elevation myocardial infarction",
+ e:"Time is myocardium — the goal is reperfusion with primary PCI within 90 minutes of first medical contact at a PCI-capable center, or within 120 minutes if transfer is needed. If that timeline can't be met, give fibrinolytics (absent contraindications) and transfer. Don't let the perfect (PCI) delay timely reperfusion.",
+ src:[{t:"2025 ACC/AHA Acute Coronary Syndromes Guideline",u:"https://www.ahajournals.org/doi/10.1161/CIR.0000000000001309"}]},
+
+{s:"cardio",st:"rct",
+ r:"NSTEMI/ACS: dual antiplatelet + anticoagulation + high-intensity statin, with an early invasive strategy for high-risk patients",
+ c:"Non-ST-elevation acute coronary syndrome",
+ e:"Give aspirin plus a P2Y12 inhibitor, parenteral anticoagulation, and high-intensity statin. An early invasive strategy (angiography within ~24 hours) benefits higher-risk patients (rising troponin, dynamic ECG changes, high GRACE score), while lower-risk patients can take an ischemia-guided approach. Risk-stratify rather than cathing everyone emergently.",
+ src:[{t:"2025 ACC/AHA Acute Coronary Syndromes Guideline",u:"https://www.ahajournals.org/doi/10.1161/CIR.0000000000001309"}]},
+
+{s:"cardio",st:"guideline",p:true,
+ r:"Type 2 MI / troponin bump from demand ischemia: treat the underlying stressor — don't reflexively give DAPT, anticoagulation, or cath",
+ c:"Elevated troponin from sepsis, tachyarrhythmia, anemia, hypertensive crisis",
+ e:"A troponin rise from supply–demand mismatch (type 2 MI) or non-ischemic myocardial injury is common in sick inpatients and is managed by correcting the driver (treat the sepsis, control the rate, transfuse, lower the BP) — not with automatic antiplatelet/anticoagulant therapy or urgent catheterization. Distinguish it from a type 1 (plaque-rupture) MI before committing to an ACS pathway.",
+ src:[{t:"Fourth Universal Definition of MI"}]},
+
+{s:"cardio",st:"rct",
+ r:"Acute decompensated heart failure: IV loop diuretics for decongestion",
+ c:"Volume-overloaded acute heart failure",
+ e:"IV loop diuretics are the cornerstone of decongestion. The DOSE trial showed bolus and continuous-infusion strategies were broadly comparable, while a higher-dose strategy achieved greater decongestion (with a transient creatinine bump). Aim for true euvolemia — under-decongestion at discharge predicts readmission.",
+ src:[{t:"DOSE, NEJM 2011"}]},
+
+{s:"cardio",st:"rct",
+ r:"HFrEF: start all four pillars of guideline-directed therapy — and begin/optimize them in-hospital",
+ c:"Heart failure with reduced ejection fraction (EF ≤40%)",
+ e:"The four foundational therapies — an ARNI (or ACEi/ARB), beta-blocker, MRA, and SGLT2 inhibitor — each independently reduce mortality and should be layered on quickly rather than sequentially over months. Initiating and up-titrating before discharge improves adherence and outcomes. Each pillar earns its place from large RCTs (e.g. PARADIGM-HF, RALES, DAPA-HF).",
+ src:[{t:"ACC/AHA/HFSA HF guideline 2022"},{t:"DAPA-HF, NEJM 2019"}]},
+
+{s:"cardio",st:"rct",
+ r:"After an HF hospitalization, rapidly up-titrate GDMT with close early follow-up",
+ c:"Recently hospitalized heart failure",
+ e:"The STRONG-HF trial showed an intensive strategy — up-titrating to full doses within ~2 weeks of discharge with frequent visits and labs — reduced 180-day death or HF readmission versus usual care. The 'start low, go slow, see you in 3 months' habit leaves patients under-treated during their highest-risk window.",
+ src:[{t:"STRONG-HF, Lancet 2022"}]},
+
+{s:"cardio",st:"rct",
+ r:"HFpEF: SGLT2 inhibitors reduce heart-failure hospitalizations",
+ c:"Heart failure with preserved ejection fraction",
+ e:"SGLT2 inhibitors are the first therapy with consistent benefit in HFpEF, reducing HF hospitalization across the ejection-fraction spectrum (EMPEROR-Preserved, DELIVER). Add diuretics for congestion and treat comorbidities (hypertension, AF, obesity). This is a relatively recent, practice-changing addition.",
+ src:[{t:"EMPEROR-Preserved, NEJM 2021"},{t:"DELIVER, NEJM 2022"}]},
+
+{s:"cardio",st:"rct",
+ r:"AFib stroke prevention: anticoagulate by CHA₂DS₂-VASc — a DOAC is preferred over warfarin for most",
+ c:"Atrial fibrillation, thromboembolic risk assessment",
+ e:"Use CHA₂DS₂-VASc to guide anticoagulation (generally treat men ≥2, women ≥3; consider at 1). DOACs are preferred over warfarin for non-valvular AF — better safety and convenience — with the key exceptions of mechanical valves and moderate-to-severe mitral stenosis, where warfarin is required. Aspirin is not adequate stroke prophylaxis for AF.",
+ src:[{t:"ACC/AHA/ACCP/HRS AFib guideline 2023"}]},
+
+{s:"cardio",st:"rct",
+ r:"AFib rate vs rhythm: rate control is reasonable first-line, but early rhythm control helps recently-diagnosed AF with cardiovascular comorbidity",
+ c:"Persistent/paroxysmal atrial fibrillation strategy",
+ e:"AFFIRM found no mortality difference between rate and rhythm control overall. However, EAST-AFNET 4 showed that initiating rhythm control within ~1 year of diagnosis in patients with cardiovascular conditions reduced cardiovascular death, stroke, and HF/ACS hospitalization by about 21%. So 'rate control for everyone' is being refined toward earlier rhythm control in suitable patients.",
+ src:[{t:"AFFIRM, NEJM 2002"},{t:"EAST-AFNET 4, NEJM 2020",u:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8934687/"}]},
+
+{s:"cardio",st:"guideline",
+ r:"AFib with rapid ventricular response: beta-blocker or non-dihydropyridine CCB — but avoid diltiazem/verapamil in HFrEF",
+ c:"Rate control of AF with RVR",
+ e:"Beta-blockers or non-dihydropyridine calcium channel blockers (diltiazem, verapamil) are first-line for acute rate control. Crucially, diltiazem/verapamil are negatively inotropic and should be avoided in reduced-EF heart failure — use a beta-blocker (cautiously) or digoxin there. Look for and treat the trigger (sepsis, PE, hyperthyroidism).",
+ src:[{t:"ACC/AHA AFib guideline"}]},
+
+{s:"cardio",st:"rct",p:true,
+ r:"AFib plus recent ACS/PCI: drop aspirin early — use a DOAC + P2Y12 inhibitor (double therapy), not prolonged triple therapy",
+ c:"Anticoagulation-eligible AF after stenting or ACS",
+ e:"AUGUSTUS showed an apixaban + P2Y12 regimen without aspirin had significantly less bleeding and fewer deaths/hospitalizations than aspirin-containing or warfarin-containing regimens, without a meaningful increase in ischemic events. Keep aspirin only for a short peri-PCI period, then continue DOAC + P2Y12. Prolonged triple therapy is a common, bleeding-prone overtreatment.",
+ src:[{t:"AUGUSTUS, NEJM 2019",u:"https://www.tctmd.com/news/augustus-analysis-clarifies-antithrombotic-choice-acs-af-patients"}]},
+
+{s:"cardio",st:"rct",p:true,
+ r:"Acute pericarditis: NSAID + colchicine — avoid corticosteroids first-line",
+ c:"Acute idiopathic/viral pericarditis",
+ e:"Add colchicine to an NSAID: the ICAP and COPE trials showed colchicine reduces symptom persistence and recurrence. Early corticosteroids are associated with MORE recurrences and should be reserved for specific indications (contraindication to NSAIDs, autoimmune cause, refractory disease). Reaching for steroids first is a frequent misstep.",
+ src:[{t:"ICAP, NEJM 2013"},{t:"COPE, Circulation 2005"}]},
+
+{s:"cardio",st:"rct",p:true,
+ r:"Stable CAD: optimize medical therapy first — revascularization relieves symptoms but doesn't reduce death or MI",
+ c:"Stable ischemic heart disease",
+ e:"COURAGE and ISCHEMIA showed that adding routine PCI to optimal medical therapy in stable CAD does not reduce death or myocardial infarction; the benefit is angina/symptom relief and quality of life. So the reflex to revascularize every significant stenosis ('the oculostenotic reflex') isn't supported for prognosis. Maximize statin, antiplatelet, and anti-anginal therapy.",
+ src:[{t:"ISCHEMIA, NEJM 2020"},{t:"COURAGE, NEJM 2007"}]},
+
+{s:"cardio",st:"rct",p:true,
+ r:"Don't give supplemental oxygen in ACS unless the patient is hypoxemic (SpO₂ <90%)",
+ c:"Acute coronary syndrome with normal oxygen saturation",
+ e:"DETO2X-AMI found routine oxygen provided no mortality or infarct-size benefit in normoxic suspected MI, and the AVOID trial suggested possible harm (larger infarcts) in STEMI. Guidelines now recommend oxygen only when SpO₂ falls below ~90%. 'Everyone with chest pain gets oxygen' is outdated.",
+ src:[{t:"DETO2X-AMI, NEJM 2017",u:"https://www.tctmd.com/news/supplemental-oxygen-provides-no-benefit-patients-suspected-mi-deto2x-ami"},{t:"AVOID, Circulation 2015"}]},
+
+{s:"cardio",st:"guideline",p:true,
+ r:"Asymptomatic severe hypertension ('hypertensive urgency'): don't rapidly lower BP — restart/adjust oral meds and arrange follow-up",
+ c:"Markedly elevated BP without acute end-organ damage",
+ e:"Without signs of acute end-organ injury (no hypertensive emergency), there is no benefit and real risk (ischemic stroke, MI, AKI from overshoot) to acutely driving the pressure down with IV or rapid-acting agents. Reinstate or titrate oral therapy and ensure outpatient follow-up. True emergencies (with end-organ damage) are the exception and need controlled IV lowering.",
+ src:[{t:"2025 ACC/AHA Hypertension Guideline"}]},
+
+{s:"cardio",st:"guideline",
+ r:"Acute aortic dissection: rapid impulse control with a beta-blocker BEFORE any vasodilator; type A is a surgical emergency",
+ c:"Suspected/confirmed acute aortic dissection",
+ e:"Lower the heart rate (target <60) and shear stress with an IV beta-blocker first, then add a vasodilator for blood pressure (target SBP ~100–120); giving a vasodilator alone causes reflex tachycardia that worsens the dissection. Type A (ascending) dissection needs emergent surgery; uncomplicated type B is usually managed medically. Control pain, which drives catecholamines.",
+ src:[{t:"ACC/AHA aortic disease guideline"}]},
+
+{s:"cardio",st:"rct",p:true,
+ r:"Mechanical heart valves: anticoagulate with warfarin only — DOACs are contraindicated",
+ c:"Patient with a mechanical prosthetic valve",
+ e:"The RE-ALIGN trial of dabigatran in mechanical valves was stopped early for excess thromboembolic AND bleeding events versus warfarin. DOACs are therefore contraindicated for mechanical valves; vitamin K antagonists (with appropriate INR targets) remain the only approved oral option. A dangerous and not-uncommon prescribing error to catch.",
+ src:[{t:"RE-ALIGN, NEJM 2013"}]},
+
+/* ===================== RHEUMATOLOGY ===================== */
+{s:"rheum",st:"guideline",
+ r:"Giant cell arteritis: start high-dose glucocorticoids immediately on suspicion — don't wait for the temporal artery biopsy",
+ c:"Suspected GCA, especially with visual symptoms",
+ e:"GCA threatens vision, and steroids must not be delayed for diagnostics — the temporal artery biopsy stays positive for roughly 2 weeks after starting steroids, so treat first and biopsy soon after. Use IV pulse methylprednisolone for visual loss, high-dose oral prednisone otherwise. Tocilizumab is an effective steroid-sparing agent (GiACTA), achieving more sustained remission with less cumulative steroid.",
+ src:[{t:"ACR/EULAR GCA guidance"},{t:"GiACTA (tocilizumab), NEJM 2017",u:"https://www.nejm.org/doi/full/10.1056/NEJMoa1613849"}]},
+
+{s:"rheum",st:"guideline",
+ r:"Polymyalgia rheumatica: low-dose prednisone (~15 mg) with a dramatic response — and stay alert for GCA",
+ c:"PMR with proximal girdle pain and stiffness",
+ e:"PMR typically responds briskly to low-dose prednisone (around 12.5–25 mg/day), and a poor response should prompt reconsidering the diagnosis. Because GCA and PMR overlap, screen for cranial symptoms (headache, jaw claudication, visual change) at every visit and escalate urgently if they appear. Taper slowly to limit relapse.",
+ src:[{t:"ACR/EULAR PMR guideline"}]},
+
+{s:"rheum",st:"rct",
+ r:"Acute gout flare: NSAID, colchicine, OR a glucocorticoid — choose by comorbidity",
+ c:"Acute gout or CPPD (pseudogout) flare",
+ e:"All three classes are effective for an acute flare; pick based on the patient (e.g. steroids or low-dose colchicine when NSAIDs are contraindicated by CKD/GI/cardiac disease; intra-articular steroid for a single accessible joint). Start early — treatment works best within the first 24 hours. The same options apply to acute CPPD.",
+ src:[{t:"ACR Gout Management Guideline 2020"}]},
+
+{s:"rheum",st:"guideline",p:true,
+ r:"Don't stop urate-lowering therapy during a gout flare — and you can even start it mid-flare with anti-inflammatory cover",
+ c:"Gout flare in a patient on (or starting) allopurinol",
+ e:"Continue established urate-lowering therapy straight through an acute flare; stopping it causes urate shifts that prolong the attack. Contemporary ACR guidance even supports initiating allopurinol during a flare as long as effective anti-inflammatory treatment is co-administered. The old reflex to hold or defer ULT around flares is outdated.",
+ src:[{t:"ACR Gout Management Guideline 2020"}]},
+
+{s:"rheum",st:"guideline",
+ r:"Urate-lowering therapy is treat-to-target (serum urate <6 mg/dL) with flare prophylaxis on initiation",
+ c:"Recurrent gout / tophi / urate-lowering decisions",
+ e:"Start allopurinol low (e.g. 100 mg/day, lower in CKD) and titrate to a serum urate target below 6 mg/dL rather than a fixed dose. Co-prescribe flare prophylaxis (low-dose colchicine or NSAID) for the first 3–6 months, since lowering urate transiently provokes flares. Indications include recurrent flares, tophi, or urate stones.",
+ src:[{t:"ACR Gout Management Guideline 2020"}]},
+
+{s:"rheum",st:"guideline",p:true,
+ r:"Don't treat asymptomatic hyperuricemia",
+ c:"Incidental elevated uric acid without gout",
+ e:"An elevated serum urate without gout, stones, or other indication should not be treated with urate-lowering drugs — there is no demonstrated benefit and real risk (including rare severe hypersensitivity). A frequently triggered reflex to 'fix the number' that guidelines advise against.",
+ src:[{t:"ACR Gout Management Guideline 2020"}]},
+
+{s:"rheum",st:"guideline",
+ r:"Hot joint: arthrocentesis BEFORE antibiotics, plus drainage, for suspected septic arthritis",
+ c:"Acute monoarthritis / suspected septic joint",
+ e:"Aspirate the joint for cell count, Gram stain, culture, and crystals before starting antibiotics (when feasible without major delay), because empiric antibiotics rapidly reduce culture yield. Septic arthritis also requires joint drainage (needle, arthroscopic, or surgical), not antibiotics alone. Crystals and infection can coexist — a positive crystal exam does not exclude sepsis.",
+ src:[{t:"Septic arthritis management evidence"}]},
+
+{s:"rheum",st:"guideline",p:true,
+ r:"Scleroderma renal crisis: ACE inhibitor (captopril) is the agent of choice — and avoid high-dose steroids in scleroderma",
+ c:"Systemic sclerosis with rising creatinine ± malignant hypertension",
+ e:"Start a short-acting ACE inhibitor (captopril) immediately and titrate rapidly to control BP — this dropped 1-year mortality dramatically and is preferred over other antihypertensives, even continuing through dialysis. Do not lead with calcium channel blockers, nitroprusside, or labetalol. Crucially, high-dose corticosteroids are a risk factor FOR scleroderma renal crisis, so steroids should be minimized/avoided in systemic sclerosis.",
+ src:[{t:"EULAR systemic sclerosis guidance"},{t:"Scleroderma renal crisis (StatPearls)",u:"https://www.ncbi.nlm.nih.gov/books/NBK482424/"}]},
+
+{s:"rheum",st:"guideline",
+ r:"Hydroxychloroquine for essentially all patients with SLE — and continue it in pregnancy",
+ c:"Systemic lupus erythematosus, any severity",
+ e:"Hydroxychloroquine reduces flares, organ damage, and mortality and is recommended as background therapy for nearly all lupus patients, including during pregnancy (where stopping increases flares). Screen for retinopathy and dose by actual body weight (≤5 mg/kg/day). It is disease-modifying, not just symptomatic.",
+ src:[{t:"ACR/EULAR SLE guideline"}]},
+
+{s:"rheum",st:"rct",
+ r:"ANCA-associated vasculitis: rituximab is non-inferior to cyclophosphamide for induction (plus glucocorticoids)",
+ c:"Severe GPA/MPA induction therapy",
+ e:"The RAVE trial showed rituximab was non-inferior to cyclophosphamide for inducing remission in severe ANCA-associated vasculitis, and it is preferred for relapsing disease and where fertility preservation matters. Combine with glucocorticoids (with a reduced-dose taper per PEXIVAS). This is a major shift away from default cyclophosphamide.",
+ src:[{t:"RAVE, NEJM 2010"},{t:"PEXIVAS, NEJM 2020"}]},
+
+{s:"rheum",st:"rct",p:true,
+ r:"Thrombotic antiphospholipid syndrome: anticoagulate with warfarin — not a DOAC",
+ c:"APS with prior thrombosis",
+ e:"DOACs are inferior in APS: the TRAPS trial of rivaroxaban in triple-positive APS was stopped early for excess arterial thrombotic events. Use a vitamin K antagonist (target INR ~2–3, higher for arterial/recurrent events). Reflexively choosing a DOAC for 'a clot' in an APS patient is a dangerous error.",
+ src:[{t:"TRAPS, Blood 2018"},{t:"ACR/EULAR APS guidance"}]},
+
+{s:"rheum",st:"guideline",
+ r:"On chronic/high-dose steroids: add bone protection and PJP prophylaxis",
+ c:"Patients on prolonged glucocorticoids ± other immunosuppression",
+ e:"For glucocorticoid-induced osteoporosis risk, give calcium/vitamin D and a bisphosphonate in higher-risk patients. For those on roughly ≥20 mg prednisone-equivalent for ≥4 weeks (especially with a second immunosuppressant), add Pneumocystis (PJP) prophylaxis. These preventive steps are easy to forget when the focus is the active disease.",
+ src:[{t:"ACR glucocorticoid-induced osteoporosis guideline"}]},
+
+{s:"rheum",st:"guideline",p:true,
+ r:"Methotrexate is dosed WEEKLY, never daily — with folic acid, and hold for renal failure/serious infection",
+ c:"Methotrexate prescribing and monitoring",
+ e:"Accidental daily (instead of weekly) low-dose methotrexate causes severe, sometimes fatal, mucositis and marrow suppression — a recurring and preventable prescribing error to double-check. Co-prescribe folic acid, avoid in significant renal impairment (renal clearance) and during acute serious infection, and counsel on alcohol/teratogenicity.",
+ src:[{t:"ACR RA treatment guideline / ISMP safety alerts"}]},
+
+{s:"rheum",st:"guideline",
+ r:"Consider HLA-B*58:01 testing before allopurinol in high-risk ancestries; start low regardless",
+ c:"Starting allopurinol",
+ e:"HLA-B*58:01 strongly predicts allopurinol-induced severe cutaneous reactions (SJS/TEN/DRESS), so the ACR conditionally recommends testing in higher-prevalence populations (e.g. Han Chinese, Thai, Korean descent) before starting. In everyone, begin at a low dose and titrate, which also lowers hypersensitivity risk.",
+ src:[{t:"ACR Gout Management Guideline 2020"}]},
+
+{s:"rheum",st:"rct",
+ r:"Don't routinely stop methotrexate for surgery — continuing it reduces flares without raising infection",
+ c:"Perioperative management of DMARDs",
+ e:"For most elective procedures, continuing methotrexate perioperatively does not increase surgical-site infection and reduces postoperative disease flares (Grennan RCT; ACR/AAHKS perioperative guidance). Biologics, by contrast, are typically held and timed around their dosing interval. Don't reflexively stop all immunosuppressants before every operation.",
+ src:[{t:"ACR/AAHKS perioperative guideline"},{t:"Grennan, Ann Rheum Dis 2001"}]}
+];
+
+/* ============================================================
+   RENDER
+============================================================ */
+const STR_LABEL={rct:"Trial / RCT",guideline:"Guideline",expert:"Expert / limited",practice:"Practice check"};
+const app=document.getElementById("app");
+const noresult=document.getElementById("noresult");
+const countEl=document.getElementById("count");
+const qEl=document.getElementById("q");
+
+let activeSpec="all";
+let activeStr="all";
+let query="";
+let recheckOnly=false;
+const collapsed={};
+
+// Guidelines that revise on a fast cycle (annual) or are in active revision.
+const RECHECK_PATTERNS=[/\bADA\b/,/GINA/,/GOLD/,/KDIGO/];
+function needsRecheck(item){
+  return (item.src||[]).some(s=>RECHECK_PATTERNS.some(re=>re.test(s.t)));
+}
+const RECHECK_TOTAL=DATA.filter(needsRecheck).length;
+
+// Build specialty chips dynamically
+const specChips=document.getElementById("specChips");
+Object.entries(SPECS).forEach(([k,v])=>{
+  const b=document.createElement("button");
+  b.className="chip";b.dataset.spec=k;b.textContent=v.full.replace(/ · /g," / ");
+  specChips.appendChild(b);
+});
+
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function highlight(text){
+  const safe=esc(text);
+  if(!query)return safe;
+  const re=new RegExp("("+query.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig");
+  return safe.replace(re,"<mark>$1</mark>");
+}
+function matchesQuery(item){
+  if(!query)return true;
+  const hay=(item.r+" "+item.c+" "+item.e+" "+SPECS[item.s].name+" "+(item.src||[]).map(s=>s.t).join(" ")).toLowerCase();
+  return hay.includes(query);
+}
+function effStr(item){return item.p?"practice":item.st;}
+
+function render(){
+  app.innerHTML="";
+  let total=0;
+  Object.entries(SPECS).forEach(([key,spec])=>{
+    if(activeSpec!=="all"&&activeSpec!==key)return;
+    const items=DATA.filter(d=>d.s===key&&matchesQuery(d)&&(activeStr==="all"||effStr(d)===activeStr)&&(!recheckOnly||needsRecheck(d)));
+    if(items.length===0)return;
+    total+=items.length;
+    const section=document.createElement("section");
+    section.className="spec"+(collapsed[key]?" collapsed":"");
+    section.id="sec-"+key;
+    const head=document.createElement("div");
+    head.className="spec-head";
+    head.innerHTML=`<h2><span class="caret">▾</span>${spec.name}</h2>
+      <span class="full">${spec.full}</span>
+      <span class="cnt">${items.length} recommendation${items.length>1?"s":""}</span>`;
+    head.addEventListener("click",()=>{collapsed[key]=!collapsed[key];render();});
+    section.appendChild(head);
+    const cards=document.createElement("div");
+    cards.className="cards";
+    items.forEach(it=>{
+      const st=effStr(it);
+      const card=document.createElement("div");
+      card.className="card"+(it.p?" practice":"");
+      card.dataset.str=st;
+      const badges=[];
+      badges.push(`<span class="badge ${it.st}">${STR_LABEL[it.st]}</span>`);
+      if(it.p)badges.push(`<span class="badge practice">⚠ Practice check</span>`);
+      if(needsRecheck(it))badges.push(`<span class="badge recheck" title="Tied to a fast-cycle guideline — verify against the current edition">↻ Verify currency</span>`);
+      const srcHtml=(it.src||[]).map(s=>{
+        if(s.u) return `<a href="${s.u}" target="_blank" rel="noopener">${esc(s.t)} ↗</a>`;
+        const q=encodeURIComponent(s.t+" guideline");
+        return `<a class="srch" href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener" title="Look up this guideline/source">${esc(s.t)} ⌕</a>`;
+      }).join("");
+      card.innerHTML=`
+        <div class="rec">${highlight(it.r)}</div>
+        <div class="ctx">${highlight(it.c)}</div>
+        <div class="badges">${badges.join("")}</div>
+        <div class="evi">${highlight(it.e)}</div>
+        <div class="src"><span class="srclabel">Evidence</span>${srcHtml}</div>`;
+      cards.appendChild(card);
+    });
+    section.appendChild(cards);
+    app.appendChild(section);
+  });
+  noresult.style.display=total===0?"block":"none";
+  const totalAll=DATA.length;
+  countEl.textContent=(query||activeSpec!=="all"||activeStr!=="all"||recheckOnly)
+    ? `${total} of ${totalAll}` : `${totalAll} recommendations`;
+}
+
+// Events
+qEl.addEventListener("input",e=>{query=e.target.value.trim().toLowerCase();render();});
+specChips.addEventListener("click",e=>{
+  if(!e.target.classList.contains("chip"))return;
+  activeSpec=e.target.dataset.spec;
+  [...specChips.querySelectorAll(".chip")].forEach(c=>c.classList.toggle("active",c===e.target));
+  render();
+});
+document.getElementById("strChips").addEventListener("click",e=>{
+  if(!e.target.classList.contains("chip"))return;
+  activeStr=e.target.dataset.str;
+  [...document.querySelectorAll("#strChips .chip")].forEach(c=>c.classList.toggle("active",c===e.target));
+  render();
+});
+const toggleBtn=document.getElementById("toggleAll");
+toggleBtn.addEventListener("click",()=>{
+  const anyOpen=Object.keys(SPECS).some(k=>!collapsed[k]);
+  Object.keys(SPECS).forEach(k=>collapsed[k]=anyOpen);
+  toggleBtn.textContent=anyOpen?"Expand all":"Collapse all";
+  render();
+});
+const recheckBtn=document.getElementById("recheckBtn");
+recheckBtn.textContent=`↻ Re-check list (${RECHECK_TOTAL})`;
+recheckBtn.addEventListener("click",()=>{
+  recheckOnly=!recheckOnly;
+  recheckBtn.classList.toggle("active",recheckOnly);
+  recheckBtn.textContent=recheckOnly?`↻ Showing re-check (${RECHECK_TOTAL})`:`↻ Re-check list (${RECHECK_TOTAL})`;
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
